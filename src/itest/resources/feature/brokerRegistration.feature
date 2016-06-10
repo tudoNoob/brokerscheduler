@@ -15,3 +15,13 @@ Feature: Broker Registration
     When register the broker
     When register the broker
     Then as the broker is already register should throw runtimeException
+    But with error message: "Broker already exist."
+
+  Scenario: Should throw exception for error in weekDay
+
+    Given a broker with this name "Andreson"
+    And this broker does not want to work on "segunda" in the shift "not available"
+    When register the broker
+    Then as the broker is already register should throw runtimeException
+    But with error message: "Constrain with error."
+

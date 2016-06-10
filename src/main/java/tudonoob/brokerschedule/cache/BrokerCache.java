@@ -13,17 +13,24 @@ import java.util.concurrent.ConcurrentMap;
 @Component
 public class BrokerCache {
 
-    private static final String BROKER_ERROR = "Error when trying to add Broker.";
+    private static final String BROKER_ERROR = "Broker already exist.";
+    public static final String CONSTRAIN_ERROR = "Constrain with error.";
     @Autowired
     @Qualifier("brokerCache")
     private Map<String, Object> cacheWrapper;
 
     public Broker addToCache(Broker broker) {
         ConcurrentMap<String, Object> cache = getConcurrentMap();
+
         boolean isBrokerExist = existsBroker(broker, cache);
         boolean isConstrainsValid = validateConstrains(broker.getConstrains());
-        if (isBrokerExist || !isConstrainsValid) {
+
+        if (isBrokerExist) {
             throw new BrokerAddOperationException(BROKER_ERROR);
+        }
+
+        if (!isConstrainsValid) {
+            throw new BrokerAddOperationException(CONSTRAIN_ERROR);
         }
 
         String newIdForNewBroker = getIdForNewBroker(broker, cache);

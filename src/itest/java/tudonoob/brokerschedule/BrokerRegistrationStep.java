@@ -1,9 +1,6 @@
 package tudonoob.brokerschedule;
 
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
+import cucumber.api.java.en.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import tudonoob.brokerschedule.controller.BrokerController;
 import tudonoob.brokerschedule.domain.Broker;
@@ -77,5 +74,9 @@ public class BrokerRegistrationStep extends BrokerScheduleApplicationTests {
         assertNotNull(exception);
     }
 
+    @But("^with error message: \"([^\"]*)\"")
+    public void withErrorMessage(String errorMessage) {
+        assertEquals(errorMessage, exception.getMessage());
+    }
 
 }
