@@ -4,11 +4,11 @@ public class Day {
 
     private String dayName;
 
-    private boolean isNotAvailableAfternoon;
+    private boolean isAvailableAfternoon;
 
-    private boolean isNotAvailableMorning;
+    private boolean isAvailableMorning;
 
-    private boolean isNotAvailableInTheWholeDay;
+    private boolean isAvailableInTheWholeDay;
 
 
     public String getDayName() {
@@ -19,37 +19,37 @@ public class Day {
         this.dayName = dayName;
     }
 
-    public boolean isNotAvailableAfternoon() {
-        return isNotAvailableAfternoon;
+    public boolean isAvailableAfternoon() {
+        return isAvailableAfternoon;
     }
 
-    public void setNotAvailableAfternoon(boolean notAvailableAfternoon) {
-        isNotAvailableAfternoon = notAvailableAfternoon;
+    public void setAvailableAfternoon(boolean availableAfternoon) {
+        isAvailableAfternoon = availableAfternoon;
     }
 
-    public boolean isNotAvailableMorning() {
-        return isNotAvailableMorning;
+    public boolean isAvailableMorning() {
+        return isAvailableMorning;
     }
 
-    public void setNotAvailableMorning(boolean notAvailableMorning) {
-        isNotAvailableMorning = notAvailableMorning;
+    public void setAvailableMorning(boolean availableMorning) {
+        isAvailableMorning = availableMorning;
     }
 
-    public boolean isNotAvailableInTheWholeDay() {
-        return isNotAvailableInTheWholeDay;
+    public boolean isAvailableInTheWholeDay() {
+        return isAvailableInTheWholeDay;
     }
 
-    public void setNotAvailableInTheWholeDay(boolean notAvailableInTheWholeDay) {
-        isNotAvailableInTheWholeDay = notAvailableInTheWholeDay;
+    public void setAvailableInTheWholeDay(boolean availableInTheWholeDay) {
+        isAvailableInTheWholeDay = availableInTheWholeDay;
     }
 
     @Override
     public String toString() {
         return "Day{" +
                 "dayName='" + dayName + '\'' +
-                ", isNotAvailableAfternoon=" + isNotAvailableAfternoon +
-                ", isNotAvailableMorning=" + isNotAvailableMorning +
-                ", isNotAvailableInTheWholeDay=" + isNotAvailableInTheWholeDay +
+                ", isAvailableAfternoon=" + isAvailableAfternoon +
+                ", isAvailableMorning=" + isAvailableMorning +
+                ", isAvailableInTheWholeDay=" + isAvailableInTheWholeDay +
                 '}';
     }
 }

@@ -4,6 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import tudonoob.brokerschedule.domain.Broker;
+import tudonoob.brokerschedule.domain.Day;
+import tudonoob.brokerschedule.domain.WeekDay;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentMap;
@@ -11,16 +13,17 @@ import java.util.concurrent.ConcurrentMap;
 @Component
 public class BrokerCache {
 
-    public static final String BROKER_ALREADY_EXIST = "Broker Already Exist.";
+    private static final String BROKER_ERROR = "Error when trying to add Broker.";
     @Autowired
     @Qualifier("brokerCache")
     private Map<String, Object> cacheWrapper;
 
     public Broker addToCache(Broker broker) {
         ConcurrentMap<String, Object> cache = getConcurrentMap();
-
-        if (existsBroker(broker, cache)) {
-            throw new BrokerExistException(BROKER_ALREADY_EXIST);
+        boolean isBrokerExist = existsBroker(broker, cache);
+        boolean isContrainsValid = validateConstrains(broker.getConstrains());
+        if (isBrokerExist || !isContrainsValid) {
+            throw new BrokerAddOperationException(BROKER_ERROR);
         }
 
         String newIdForNewBroker = getIdForNewBroker(broker, cache);
@@ -78,5 +81,20 @@ public class BrokerCache {
         return (Broker) getConcurrentMap().get(id);
     }
 
+    private boolean validateConstrains(List<Day> constrains) {
+        boolean isValidated = true;
+
+        try {
+
+            constrains.forEach((day) ->
+                    WeekDay.valueOf(day.getDayName().toUpperCase())
+            );
+
+        } catch (IllegalArgumentException exception) {
+            isValidated = false;
+        }
+
+        return isValidated;
+    }
 
 }
