@@ -1,4 +1,4 @@
-package tudonoob.brokerschedule;
+package tudonoob.brokerschedule.domain;
 
 public class Day {
 
