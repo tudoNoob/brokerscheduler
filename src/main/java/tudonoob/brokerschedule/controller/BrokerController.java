@@ -7,6 +7,8 @@ import tudonoob.brokerschedule.cache.BrokerCache;
 import tudonoob.brokerschedule.domain.Broker;
 import tudonoob.brokerschedule.model.ErrorMessage;
 
+import javax.validation.Valid;
+
 @RestController
 public class BrokerController {
 
@@ -16,7 +18,7 @@ public class BrokerController {
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public
     @ResponseBody
-    Broker registerBroker(@RequestBody Broker broker) {
+    Broker registerBroker(@RequestBody @Valid Broker broker) {
         return cache.addToCache(broker);
     }
 

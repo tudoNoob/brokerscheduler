@@ -1,12 +1,16 @@
 package tudonoob.brokerschedule.domain;
 
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Component
 public class Broker {
 
+    @NotNull
+    @NotEmpty
     private String name;
     private List<Day> constrains;
 
