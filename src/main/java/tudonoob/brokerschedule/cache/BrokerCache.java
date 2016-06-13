@@ -22,14 +22,11 @@ public class BrokerCache {
     public Broker addToCache(Broker broker) {
         ConcurrentMap<String, Object> cache = getConcurrentMap();
 
-        boolean isBrokerExist = existsBroker(broker, cache);
-        boolean isConstrainsValid = validateConstrains(broker.getConstrains());
-
-        if (isBrokerExist) {
+        if (existsBroker(broker, cache)) {
             throw new BrokerAddOperationException(BROKER_ERROR);
         }
 
-        if (!isConstrainsValid) {
+        if (!validateConstrains(broker.getConstrains())) {
             throw new BrokerAddOperationException(CONSTRAIN_ERROR);
         }
 
