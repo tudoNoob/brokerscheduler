@@ -13,7 +13,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 @SpringBootApplication
-//@ComponentScan({"tudonoob.brokershedule.controller.*","tudonoob.brokerschedule.cache.*","tudonoob.brokerschedule.domain.*"})
 public class BrokerScheduleApplication {
 
     public static void main(String[] args) {

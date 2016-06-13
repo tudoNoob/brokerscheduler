@@ -14,7 +14,8 @@ import java.util.concurrent.ConcurrentMap;
 public class BrokerCache {
 
     private static final String BROKER_ERROR = "Broker already exist.";
-    public static final String CONSTRAIN_ERROR = "Constrain with error.";
+    private static final String CONSTRAIN_ERROR = "Constrain with error.";
+
     @Autowired
     @Qualifier("brokerCache")
     private Map<String, Object> cacheWrapper;
@@ -60,20 +61,25 @@ public class BrokerCache {
 
     private String buildIdNumber(List<String> idsList) {
         int actualSizeOfArray = idsList.size() - 1;
+
         String id = idsList.get(actualSizeOfArray);
+
         int idAsInteger = Integer.parseInt(id);
+
         return new StringBuilder().append(idAsInteger + 1).toString();
     }
 
     private List<String> getListOrderedWithSetOfString(ConcurrentMap<String, Object> cache) {
         Set<String> ids = cache.keySet();
         List<String> idsList = new ArrayList<>(ids);
+
         Collections.sort(idsList, new Comparator<String>() {
             @Override
             public int compare(String first, String second) {
                 return first.compareTo(second);
             }
         });
+
         return idsList;
     }
 
