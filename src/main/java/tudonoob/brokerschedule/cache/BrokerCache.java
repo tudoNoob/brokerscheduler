@@ -31,7 +31,7 @@ public class BrokerCache {
             throw new BrokerAddOperationException(CONSTRAIN_ERROR);
         }
 
-        String newIdForNewBroker = getIdForNewBroker(broker, cache);
+        String newIdForNewBroker = getIdForNewBroker(cache);
 
         cache.put(newIdForNewBroker, broker);
 
@@ -46,8 +46,8 @@ public class BrokerCache {
         return cache.containsValue(broker);
     }
 
+    private String getIdForNewBroker(ConcurrentMap<String, Object> cache) {
 
-    private String getIdForNewBroker(Broker broker, ConcurrentMap<String, Object> cache) {
         if (cache.size() == 0) {
             return "1";
         }
@@ -73,12 +73,8 @@ public class BrokerCache {
         Set<String> ids = cache.keySet();
         List<String> idsList = new ArrayList<>(ids);
 
-        Collections.sort(idsList, new Comparator<String>() {
-            @Override
-            public int compare(String first, String second) {
-                return first.compareTo(second);
-            }
-        });
+        Comparator<String> comparatorByName = (String first, String second) -> first.compareTo(second);
+        Collections.sort(idsList, comparatorByName);
 
         return idsList;
     }

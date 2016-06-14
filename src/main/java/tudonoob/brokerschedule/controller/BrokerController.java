@@ -25,7 +25,10 @@ public class BrokerController {
     @RequestMapping(value = "/update/{id}")
     public
     @ResponseBody
-    Broker updateBroker(@PathVariable("id") String id) {
+    Broker updateBroker(@PathVariable("id") String id,@RequestBody Broker broker) {
+
+
+
         return null;
 
     }
