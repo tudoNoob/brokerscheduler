@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import tudonoob.brokerschedule.controller.BrokerController;
 import tudonoob.brokerschedule.domain.Broker;
 
+import java.util.concurrent.ConcurrentMap;
+
 import static org.junit.Assert.assertEquals;
 
 public class BrokerUpdateStep {
@@ -18,8 +20,11 @@ public class BrokerUpdateStep {
 
     private Broker responseBroker;
 
+    private String id;
+
     @When("I update the broker with the id \"([^\"]*)\"")
     public void i_update_the_broker_with_the_id(String id) {
+        this.id = id;
         Broker broker = registrationstep.getBroker();
         responseBroker = controller.updateBroker(id, broker);
     }
@@ -27,6 +32,9 @@ public class BrokerUpdateStep {
     @Then("I will receive a broker with the name \"([^\"]*)\"")
     public void i_will_receive_a_broker_with_the_name(String brokerName) {
         assertEquals(brokerName, responseBroker.getName());
+        ConcurrentMap<String, Object> allBrokers = controller.getAllBrokers();
+        Broker expectedBroker = (Broker) allBrokers.get(this.id);
+        assertEquals(brokerName, expectedBroker.getName());
     }
 
 

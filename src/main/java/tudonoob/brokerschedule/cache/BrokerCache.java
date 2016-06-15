@@ -41,12 +41,14 @@ public class BrokerCache {
     public Broker updateBroker(String id, Broker broker) {
         ConcurrentMap<String, Object> cache = getConcurrentMap();
         Broker oldBroker = getBroker(id);
+
         if (oldBroker == null) {
             cache.put(id, broker);
         } else {
             cache.remove(id);
             cache.put(id,broker);
         }
+
         return broker;
     }
 
