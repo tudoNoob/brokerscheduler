@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tudonoob.brokerschedule.cache.BrokerCache;
+import tudonoob.brokerschedule.cache.BrokerScheduleException;
 import tudonoob.brokerschedule.domain.Broker;
 import tudonoob.brokerschedule.model.ErrorMessage;
 
@@ -30,15 +31,16 @@ public class BrokerController {
         return cache.updateBroker(id, broker);
     }
 
-    @RequestMapping(value="/getAllBrokers")
-    public ConcurrentMap<String, Object> getAllBrokers(){
+    @RequestMapping(value = "/getAllBrokers")
+    public ConcurrentMap<String, Object> getAllBrokers() {
         return cache.getAllBrokers();
     }
 
 
-    @ExceptionHandler(RuntimeException.class)
-    public ErrorMessage handleError(Exception exception) {
-        return new ErrorMessage(exception.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    @ExceptionHandler(BrokerScheduleException.class)
+    public ErrorMessage handleError(BrokerScheduleException exception) {
+        return new ErrorMessage(exception.getMessage(), exception.getExceptionName(),
+                HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 

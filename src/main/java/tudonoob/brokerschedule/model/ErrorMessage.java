@@ -4,12 +4,14 @@ import org.springframework.http.HttpStatus;
 
 public class ErrorMessage {
 
-    private String errorMessage;
-    private HttpStatus status;
+    private final String exceptionName;
+    private final String errorMessage;
+    private final HttpStatus status;
 
 
-    public ErrorMessage(String errorMessage, HttpStatus status) {
+    public ErrorMessage(String errorMessage, String exceptionName, HttpStatus status) {
         this.errorMessage = errorMessage;
+        this.exceptionName = exceptionName;
         this.status = status;
     }
 
@@ -20,5 +22,9 @@ public class ErrorMessage {
 
     public HttpStatus getStatus() {
         return status;
+    }
+
+    public String getExceptionName() {
+        return exceptionName;
     }
 }

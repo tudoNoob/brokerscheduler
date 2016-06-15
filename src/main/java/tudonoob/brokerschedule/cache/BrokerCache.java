@@ -15,6 +15,7 @@ public class BrokerCache {
 
     private static final String BROKER_ERROR = "Broker already exist.";
     private static final String CONSTRAIN_ERROR = "Constrain with error.";
+    public static final String CACHE_IS_EMPTY_ERROR = "Cache is Empty";
 
     @Autowired
     @Qualifier("brokerCache")
@@ -46,7 +47,7 @@ public class BrokerCache {
             cache.put(id, broker);
         } else {
             cache.remove(id);
-            cache.put(id,broker);
+            cache.put(id, broker);
         }
 
         return broker;
@@ -118,6 +119,12 @@ public class BrokerCache {
     }
 
     public ConcurrentMap<String, Object> getAllBrokers() {
-        return getConcurrentMap();
+        ConcurrentMap<String, Object> cache = getConcurrentMap();
+
+        if (cache.size() == 0) {
+            throw new CacheEmptyException(CACHE_IS_EMPTY_ERROR);
+        }
+
+        return cache;
     }
 }
