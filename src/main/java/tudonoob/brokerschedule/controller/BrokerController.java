@@ -9,6 +9,7 @@ import tudonoob.brokerschedule.domain.Broker;
 import tudonoob.brokerschedule.model.ErrorMessage;
 
 import javax.validation.Valid;
+import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 
 @RestController
@@ -24,14 +25,14 @@ public class BrokerController {
         return cache.addToCache(broker);
     }
 
-    @RequestMapping(value = "/update/{id}")
+    @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     public
     @ResponseBody
     Broker updateBroker(@PathVariable("id") String id, @RequestBody Broker broker) {
         return cache.updateBroker(id, broker);
     }
 
-    @RequestMapping(value = "/getAllBrokers")
+    @RequestMapping(value = "/getAllBrokers", method = RequestMethod.GET)
     public ConcurrentMap<String, Object> getAllBrokers() {
         return cache.getAllBrokers();
     }
@@ -43,5 +44,10 @@ public class BrokerController {
                 HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
+    @RequestMapping(value = "/bulkBrokers", method = RequestMethod.POST)
+    public List<Broker>  addBulkOfBrokers(){
+
+        return null;
+    }
 
 }
