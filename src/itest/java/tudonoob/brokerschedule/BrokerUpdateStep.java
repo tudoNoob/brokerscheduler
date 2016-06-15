@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 public class BrokerUpdateStep {
 
     @Autowired
-    private BrokerRegistrationStep registrationstep;
+    private BrokerRegistrationStep registrationStep;
 
     @Autowired
     private BrokerController controller;
@@ -25,7 +25,7 @@ public class BrokerUpdateStep {
     @When("I update the broker with the id \"([^\"]*)\"")
     public void i_update_the_broker_with_the_id(String id) {
         this.id = id;
-        Broker broker = registrationstep.getBroker();
+        Broker broker = registrationStep.getBroker();
         responseBroker = controller.updateBroker(id, broker);
     }
 

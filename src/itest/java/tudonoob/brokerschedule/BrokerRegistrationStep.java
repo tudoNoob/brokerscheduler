@@ -25,14 +25,11 @@ public class BrokerRegistrationStep {
 
     private RuntimeException exception;
 
-    public BrokerRegistrationStep() {
+    @Given("^a broker with this name \"([^\"]*)\"$")
+    public void i_have_broker_with_name(String brokerName) throws Throwable {
         this.broker = new Broker();
         constrains = new ArrayList<>();
         broker.setConstrains(constrains);
-    }
-
-    @Given("^a broker with this name \"([^\"]*)\"$")
-    public void i_have_broker_with_name(String brokerName) throws Throwable {
         broker.setName(brokerName);
     }
 

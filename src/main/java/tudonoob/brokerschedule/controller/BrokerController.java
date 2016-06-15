@@ -45,9 +45,9 @@ public class BrokerController {
     }
 
     @RequestMapping(value = "/bulkBrokers", method = RequestMethod.POST)
-    public List<Broker>  addBulkOfBrokers(){
-
-        return null;
+    public List<Broker> addBulkOfBrokers(@RequestBody List<Broker> brokers) {
+        brokers.forEach((broker) -> cache.addToCache(broker));
+        return brokers;
     }
 
 }
