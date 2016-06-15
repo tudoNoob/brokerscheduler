@@ -44,7 +44,8 @@ public class BrokerCache {
         if (oldBroker == null) {
             cache.put(id, broker);
         } else {
-            oldBroker = broker;
+            cache.remove(id);
+            cache.put(id,broker);
         }
         return broker;
     }
@@ -114,4 +115,7 @@ public class BrokerCache {
         return isValidated;
     }
 
+    public ConcurrentMap<String, Object> getAllBrokers() {
+        return getConcurrentMap();
+    }
 }
