@@ -99,7 +99,7 @@ public class BrokerCache {
         return (ConcurrentMap<String, Object>) cacheWrapper.get("buildCache");
     }
 
-    public Broker getBroker(String id) {
+    private Broker getBroker(String id) {
         return (Broker) getConcurrentMap().get(id);
     }
 
