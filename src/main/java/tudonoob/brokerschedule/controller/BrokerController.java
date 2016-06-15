@@ -33,7 +33,9 @@ public class BrokerController {
     }
 
     @RequestMapping(value = "/getAllBrokers", method = RequestMethod.GET)
-    public ConcurrentMap<String, Object> getAllBrokers() {
+    public
+    @ResponseBody
+    ConcurrentMap<String, Object> getAllBrokers() {
         return cache.getAllBrokers();
     }
 
@@ -45,7 +47,9 @@ public class BrokerController {
     }
 
     @RequestMapping(value = "/bulkBrokers", method = RequestMethod.POST)
-    public List<Broker> addBulkOfBrokers(@RequestBody List<Broker> brokers) {
+    public
+    @ResponseBody
+    List<Broker> addBulkOfBrokers(@RequestBody List<Broker> brokers) {
         brokers.forEach((broker) -> cache.addToCache(broker));
         return brokers;
     }
