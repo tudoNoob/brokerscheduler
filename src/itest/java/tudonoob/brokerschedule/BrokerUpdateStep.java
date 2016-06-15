@@ -29,7 +29,7 @@ public class BrokerUpdateStep {
         responseBroker = controller.updateBroker(id, broker);
     }
 
-    @Then("I will receive a broker with the name \"([^\"]*)\"")
+    @Then("I will have a broker with the name \"([^\"]*)\"")
     public void i_will_receive_a_broker_with_the_name(String brokerName) {
         assertEquals(brokerName, responseBroker.getName());
         ConcurrentMap<String, Object> allBrokers = controller.getAllBrokers();
