@@ -1,5 +1,6 @@
 package tudonoob.brokerschedule;
 
+import cucumber.api.java.en.Given;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,9 +23,9 @@ import java.util.concurrent.ConcurrentMap;
 public class BrokerScheduleApplicationTests {
 
 
-
     @Test
     public void contextLoads() {
     }
+
 
 }

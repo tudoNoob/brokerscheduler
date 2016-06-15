@@ -6,5 +6,5 @@ import org.junit.runner.RunWith;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(format = "pretty", features = "src/itest/resources")
-public class FeatureTestRunner{
+public class FeatureTestRunner {
 }

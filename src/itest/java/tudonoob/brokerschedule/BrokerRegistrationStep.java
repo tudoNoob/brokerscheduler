@@ -13,10 +13,11 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-public class BrokerRegistrationStep extends BrokerScheduleApplicationTests {
+public class BrokerRegistrationStep {
 
     @Autowired
     private BrokerController controller;
+
 
     private Broker broker;
 
@@ -79,4 +80,7 @@ public class BrokerRegistrationStep extends BrokerScheduleApplicationTests {
         assertEquals(errorMessage, exception.getMessage());
     }
 
+    public Broker getBroker() {
+        return broker;
+    }
 }
