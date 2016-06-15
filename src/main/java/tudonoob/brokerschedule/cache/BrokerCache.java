@@ -38,6 +38,17 @@ public class BrokerCache {
         return getBroker(newIdForNewBroker);
     }
 
+    public Broker updateBroker(String id, Broker broker) {
+        ConcurrentMap<String, Object> cache = getConcurrentMap();
+        Broker oldBroker = getBroker(id);
+        if (oldBroker == null) {
+            cache.put(id, broker);
+        } else {
+            oldBroker = broker;
+        }
+        return broker;
+    }
+
     private boolean existsBroker(Broker broker, ConcurrentMap<String, Object> cache) {
         if (cache.size() == 0) {
             return false;
