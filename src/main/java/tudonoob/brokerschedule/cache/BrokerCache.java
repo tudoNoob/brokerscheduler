@@ -16,6 +16,7 @@ public class BrokerCache {
     private static final String BROKER_ERROR = "Broker already exist.";
     private static final String CONSTRAIN_ERROR = "Constrain with error.";
     public static final String CACHE_IS_EMPTY_ERROR = "Cache is Empty";
+    public static final String FIRST_ID_NUMBER = "1";
 
     @Autowired
     @Qualifier("brokerCache")
@@ -64,7 +65,7 @@ public class BrokerCache {
     private String getIdForNewBroker(ConcurrentMap<String, Object> cache) {
 
         if (cache.size() == 0) {
-            return "1";
+            return FIRST_ID_NUMBER;
         }
 
         List<String> idsList = getListOrderedWithSetOfString(cache);
