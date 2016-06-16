@@ -9,8 +9,10 @@ import tudonoob.brokerschedule.domain.Broker;
 import tudonoob.brokerschedule.model.ErrorMessage;
 
 import javax.validation.Valid;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
+import java.util.stream.Collectors;
 
 @RestController
 public class BrokerController {
@@ -54,4 +56,14 @@ public class BrokerController {
         return brokers;
     }
 
+    @RequestMapping(value = "/filterByName/{name}", method = RequestMethod.POST)
+    public List<Object> filterByNameMatcher(@PathVariable("name") String name) {
+
+        List<Object> collect = cache.getAllBrokers()
+                .values().stream()
+                .filter((broker) -> ((Broker) broker).getName().contains(name))
+                .collect(Collectors.toList());
+
+        return collect;
+    }
 }
