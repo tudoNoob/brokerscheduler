@@ -1,4 +1,4 @@
-Feature:
+Feature: Find by Name a list of Brokers
   Scenario: Find brokers that has the following name "rafael"
     Given  a broker with this name "Rafael Joao"
     And this broker does not want to work on "monday" in the shift "morning"

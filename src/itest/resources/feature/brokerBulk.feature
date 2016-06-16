@@ -1,4 +1,4 @@
-Feature:
+Feature: Bulk Broker
 
   Scenario: Bulk a broker list
     Given  a broker with this name "Maria"
