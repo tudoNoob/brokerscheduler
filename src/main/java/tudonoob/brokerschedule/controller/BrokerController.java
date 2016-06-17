@@ -9,7 +9,6 @@ import tudonoob.brokerschedule.domain.Broker;
 import tudonoob.brokerschedule.model.ErrorMessage;
 
 import javax.validation.Valid;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
 import java.util.function.Predicate;
@@ -44,6 +43,7 @@ public class BrokerController {
 
 
     @ExceptionHandler(BrokerScheduleException.class)
+    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorMessage handleError(BrokerScheduleException exception) {
         return new ErrorMessage(exception.getMessage(), exception.getExceptionName(),
                 HttpStatus.INTERNAL_SERVER_ERROR);
