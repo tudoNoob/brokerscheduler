@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 @RestController
@@ -59,9 +60,11 @@ public class BrokerController {
     @RequestMapping(value = "/filterByName/{name}", method = RequestMethod.POST)
     public List<Object> filterByNameMatcher(@PathVariable("name") String name) {
 
+        Predicate<Object> matchBrokerByName = (broker) -> ((Broker) broker).getName().contains(name);
+
         List<Object> collect = cache.getAllBrokers()
                 .values().stream()
-                .filter((broker) -> ((Broker) broker).getName().contains(name))
+                .filter(matchBrokerByName)
                 .collect(Collectors.toList());
 
         return collect;
@@ -69,13 +72,12 @@ public class BrokerController {
 
     @RequestMapping(value = "/filterByConstrain/{constrain}")
     public List<Object> filterByConstrain(@PathVariable("constrain") String constrain) {
+
+        Predicate<Object> matchBrokerByDayName = (broker) -> ((Broker) broker).getConstrains()
+                .stream().anyMatch(day -> day.getDayName().equals(constrain));
+
         List<Object> brokersWhichHasTheSameConstrain = cache.getAllBrokers().values()
-                .stream().filter((broker) ->
-                        ((Broker) broker).getConstrains()
-                                .stream()
-                                .anyMatch((day) ->
-                                        day.getDayName().equals(constrain))).
-                        collect(Collectors.toList());
+                .stream().filter(matchBrokerByDayName).collect(Collectors.toList());
 
         return brokersWhichHasTheSameConstrain;
     }
