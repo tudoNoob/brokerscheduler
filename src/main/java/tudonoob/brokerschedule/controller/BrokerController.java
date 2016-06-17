@@ -69,7 +69,7 @@ public class BrokerController {
 
     @RequestMapping(value = "/filterByConstrain/{constrain}")
     public List<Object> filterByConstrain(@PathVariable("constrain") String constrain) {
-        List<Object> brokersWhichhasTheSameConstrain = cache.getAllBrokers().values()
+        List<Object> brokersWhichHasTheSameConstrain = cache.getAllBrokers().values()
                 .stream().filter((broker) ->
                         ((Broker) broker).getConstrains()
                                 .stream()
@@ -77,7 +77,7 @@ public class BrokerController {
                                         day.getDayName().equals(constrain))).
                         collect(Collectors.toList());
 
-        return brokersWhichhasTheSameConstrain;
+        return brokersWhichHasTheSameConstrain;
     }
 
 }
