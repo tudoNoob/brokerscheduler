@@ -6,13 +6,21 @@ import org.springframework.stereotype.Component;
 import javax.validation.constraints.NotNull;
 import java.util.List;
 
-@Component
+
 public class Broker {
 
     @NotNull
     @NotEmpty
     private String name;
     private List<Day> constrains;
+
+    public Broker() {
+    }
+
+    public Broker(String name) {
+        this.name = name;
+    }
+
 
     public String getName() {
         return name;

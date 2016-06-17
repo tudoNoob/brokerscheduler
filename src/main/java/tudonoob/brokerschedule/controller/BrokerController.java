@@ -7,6 +7,7 @@ import tudonoob.brokerschedule.cache.BrokerCache;
 import tudonoob.brokerschedule.cache.BrokerScheduleException;
 import tudonoob.brokerschedule.domain.Broker;
 import tudonoob.brokerschedule.model.ErrorMessage;
+import tudonoob.brokerschedule.service.BrokerService;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -19,6 +20,9 @@ public class BrokerController {
 
     @Autowired
     private BrokerCache cache;
+
+    @Autowired
+    private BrokerService service;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
     public
@@ -59,27 +63,12 @@ public class BrokerController {
 
     @RequestMapping(value = "/filterByName/{name}", method = RequestMethod.POST)
     public List<Object> filterByNameMatcher(@PathVariable("name") String name) {
-
-        Predicate<Object> matchBrokerByName = (broker) -> ((Broker) broker).getName().contains(name);
-
-        List<Object> collect = cache.getAllBrokers()
-                .values().stream()
-                .filter(matchBrokerByName)
-                .collect(Collectors.toList());
-
-        return collect;
+        return service.filterBrokersByName(name);
     }
 
     @RequestMapping(value = "/filterByConstrain/{constrain}")
     public List<Object> filterByConstrain(@PathVariable("constrain") String constrain) {
-
-        Predicate<Object> matchBrokerByDayName = (broker) -> ((Broker) broker).getConstrains()
-                .stream().anyMatch(day -> day.getDayName().equals(constrain));
-
-        List<Object> brokersWhichHasTheSameConstrain = cache.getAllBrokers().values()
-                .stream().filter(matchBrokerByDayName).collect(Collectors.toList());
-
-        return brokersWhichHasTheSameConstrain;
+        return service.filterBrokersByConstraint(constrain);
     }
 
 }

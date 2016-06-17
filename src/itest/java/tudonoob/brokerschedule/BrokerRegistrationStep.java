@@ -54,7 +54,7 @@ public class BrokerRegistrationStep {
     @When("^register the broker")
     public void register() {
         try {
-            Broker broker = controller.registerBroker(this.broker);
+            controller.registerBroker(this.broker);
         } catch (RuntimeException exception) {
             this.exception = exception;
         }
