@@ -39,6 +39,9 @@ sourceSets {
 		}
 		resources.srcDir file('src/itest/resources')
 	}
+	test {
+		resources.srcDir file('src/test/resources')
+	}
 }
 task itest(type: Test) {
 	testClassesDir = sourceSets.itest.output.classesDir
@@ -62,6 +65,8 @@ dependencies {
 	runtime('org.postgresql:postgresql')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+	testCompile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+
 
 }
 
