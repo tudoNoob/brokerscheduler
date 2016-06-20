@@ -23,6 +23,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
@@ -75,8 +76,18 @@ public class BrokerServiceTest {
     }
 
 
-    public void shoudlReturnAlistWithSizeZeroGivenANoValidConstrain() {
+    @Test
+    public void shouldReturnAListWithSizeZeroGivenANoValidConstrain() {
         when(cache.getAllBrokers()).thenReturn(brokersMocked);
-        service.filterBrokersByConstraint("friday");
+
+        List<Object> resultBrokers = service.filterBrokersByConstraint("friday");
+
+        boolean allMatch = resultBrokers.stream().allMatch(broker ->
+                ((Broker) broker).getConstrains()
+                        .stream()
+                        .anyMatch(constraint -> constraint.getDayName().equals("friday"))
+        );
+
+        assertTrue(allMatch);
     }
 }

@@ -1,56 +1,46 @@
 [
-
   {
     "name": "Ruth",
-    "constrains": [{
-      "dayName": "monday",
-      "isAvailableAfternoon": "false",
-      "isAvailableMorning": "false",
-      "isAvailableInTheWholeDay": "false"
-    }
-
+    "constrains": [
+      {
+        "dayName": "monday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
+      }
     ]
-
   },
   {
     "name": "Rafael",
-    "constrains": [{
-      "dayName": "monday",
-      "isAvailableAfternoon": "false",
-      "isAvailableMorning": "false",
-      "isAvailableInTheWholeDay": "false"
-    }
-
+    "constrains": [
+      {
+        "dayName": "monday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
+      }
     ]
-
   },
   {
     "name": "Joao",
-    "constrains": [{
-      "dayName": "monday",
-      "isAvailableAfternoon": "false",
-      "isAvailableMorning": "false",
-      "isAvailableInTheWholeDay": "false"
-    }
-
+    "constrains": [
+      {
+        "dayName": "monday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
+      }
     ]
-
   },
   {
     "name": "William",
-    "constrains": [{
-      "dayName": "monday",
-      "isAvailableAfternoon": "false",
-      "isAvailableMorning": "false",
-      "isAvailableInTheWholeDay": "false"
-    }
-
+    "constrains": [
+      {
+        "dayName": "friday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
+      }
     ]
-
   }
-
-
-
-
-
 ]
