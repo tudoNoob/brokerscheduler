@@ -1,0 +1,99 @@
+{
+	"variables": [],
+	"info": {
+		"name": "BrokerSchedule",
+		"_postman_id": "6068ec2b-56ff-5c8b-dda9-8e137b252efc",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/register",
+			"request": {
+				"url": "localhost:8080/register",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"william\",\n\t\"constrains\": [{\n\t\t\t\"dayName\": \"monday\",\n\t\t\t\"isAvailableAfternoon\": \"false\",\n\t\t\t\"isAvailableMorning\": \"false\",\n\t\t\t\"isAvailableInTheWholeDay\": \"false\"\n\t\t}\n\n\t]\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/update/{id}",
+			"request": {
+				"url": "localhost:8080/update/1",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\": \"rafael\",\n\t\"constrains\": [{\n\t\t\t\"dayName\": \"monday\",\n\t\t\t\"isAvailableAfternoon\": \"false\",\n\t\t\t\"isAvailableMorning\": \"false\",\n\t\t\t\"isAvailableInTheWholeDay\": \"false\"\n\t\t}\n\n\t]\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/getAllBrokers",
+			"request": {
+				"url": "localhost:8080/getAllBrokers",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/bulkBrokers",
+			"request": {
+				"url": "localhost:8080/bulkBrokers",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n    \n{\n\t\"name\": \"Ruth\",\n\t\"constrains\": [{\n\t\t\t\"dayName\": \"monday\",\n\t\t\t\"isAvailableAfternoon\": \"false\",\n\t\t\t\"isAvailableMorning\": \"false\",\n\t\t\t\"isAvailableInTheWholeDay\": \"false\"\n\t\t}\n\n\t]\n\n},\n{\n\t\"name\": \"Rafael\",\n\t\"constrains\": [{\n\t\t\t\"dayName\": \"monday\",\n\t\t\t\"isAvailableAfternoon\": \"false\",\n\t\t\t\"isAvailableMorning\": \"false\",\n\t\t\t\"isAvailableInTheWholeDay\": \"false\"\n\t\t}\n\n\t]\n\n},\n{\n\t\"name\": \"Joao\",\n\t\"constrains\": [{\n\t\t\t\"dayName\": \"monday\",\n\t\t\t\"isAvailableAfternoon\": \"false\",\n\t\t\t\"isAvailableMorning\": \"false\",\n\t\t\t\"isAvailableInTheWholeDay\": \"false\"\n\t\t}\n\n\t]\n\n},\n{\n\t\"name\": \"William\",\n\t\"constrains\": [{\n\t\t\t\"dayName\": \"monday\",\n\t\t\t\"isAvailableAfternoon\": \"false\",\n\t\t\t\"isAvailableMorning\": \"false\",\n\t\t\t\"isAvailableInTheWholeDay\": \"false\"\n\t\t}\n\n\t]\n\n}\n    \n    \n    \n    \n    \n]"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/filterByName/{name}",
+			"request": {
+				"url": "localhost:8080/filterByName/{name}",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
