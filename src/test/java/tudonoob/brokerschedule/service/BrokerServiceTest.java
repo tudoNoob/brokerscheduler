@@ -25,8 +25,6 @@ public class BrokerServiceTest {
 
     private ConcurrentMap<String, Object> brokersMocked;
 
-    private Broker[] brokers;
-
 
     @Before
     public void setUp() throws Exception {
