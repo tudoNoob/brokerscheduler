@@ -4,11 +4,11 @@ public class Day {
 
     private String dayName;
 
-    private Boolean isAvailableAfternoon;
+    private Boolean isAvailableAfternoon = false;
 
-    private Boolean isAvailableMorning;
+    private Boolean isAvailableMorning = false;
 
-    private Boolean isAvailableInTheWholeDay;
+    private Boolean isAvailableInTheWholeDay = false;
 
     public String getDayName() {
         return dayName;

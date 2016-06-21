@@ -44,7 +44,7 @@ public class BrokerRegistrationStep {
             day.setAvailableMorning(true);
         }
 
-        boolean isNotAvailableInTheWholeDay = (day.isAvailableAfternoon() || day.isAvailableMorning()) ?
+        boolean isNotAvailableInTheWholeDay = (day.getAvailableAfternoon() || day.getAvailableMorning()) ?
                 false : true;
 
         day.setAvailableInTheWholeDay(isNotAvailableInTheWholeDay);
