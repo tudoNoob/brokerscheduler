@@ -1,26 +1,18 @@
 package tudonoob.brokerschedule.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.Gson;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import tudonoob.brokerschedule.cache.BrokerCache;
 import tudonoob.brokerschedule.domain.Broker;
 
-import java.io.File;
-import java.io.FileReader;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
@@ -43,10 +35,10 @@ public class BrokerServiceTest {
     public void setUp() throws Exception {
         initMocks(this);
         service = new BrokerService(cache);
-        buildingBrokersMock();
+        buildBrokersMock();
     }
 
-    private void buildingBrokersMock() {
+    private void buildBrokersMock() {
         brokersMocked = new ConcurrentHashMap<>();
 
         Gson gson = new Gson();
@@ -77,7 +69,7 @@ public class BrokerServiceTest {
 
 
     @Test
-    public void shouldReturnAListWithSizeZeroGivenANoValidConstrain() {
+    public void shouldReturnAListWithSizeOneGivenANoValidConstrain() {
         when(cache.getAllBrokers()).thenReturn(brokersMocked);
 
         List<Object> resultBrokers = service.filterBrokersByConstraint("friday");
