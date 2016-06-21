@@ -47,14 +47,13 @@ public class BrokerSchedulerService {
         if (cacheClone == null) {
             throw new NoBrokerException(NO_BROKERS_MSG_ERROR);
         }
-        System.out.printf("CACHE TO_STRING:" + cacheClone.toString());
-        prioritizeThoseWhoHasOneConstraint();
+        prioritizeThoseBrokersWhoHasOneConstraint();
 
 
         return scheduleMap;
     }
 
-    private void prioritizeThoseWhoHasOneConstraint() {
+    private void prioritizeThoseBrokersWhoHasOneConstraint() {
         for (WeekDay day : WeekDay.values()) {
             List<Object> brokersPrioritized = brokerService.
                     filterBrokersByOnlyOneConstraint(day.getWeekDayName().toLowerCase());
@@ -63,8 +62,6 @@ public class BrokerSchedulerService {
 
             addAListOfBrokersToSchedule(brokersPrioritized, schedule);
 
-            System.out.println("SCHEDULE TO_STRING=" + scheduleMap);
-
             removeBrokersFromCache(brokersPrioritized);
         }
     }
@@ -72,6 +69,7 @@ public class BrokerSchedulerService {
     private void addAListOfBrokersToSchedule(List<Object> brokersPrioritized, Schedule schedule) {
         brokersPrioritized.forEach(broker -> {
             Day constraint = ((Broker) broker).getConstrains().get(0);
+
             if (constraint.getAvailableMorning()) {
                 schedule.setMorning((Broker) broker);
             } else if (constraint.getAvailableAfternoon()) {

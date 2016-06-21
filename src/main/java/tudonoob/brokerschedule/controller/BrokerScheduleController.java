@@ -16,7 +16,7 @@ public class BrokerScheduleController {
     @Autowired
     private BrokerSchedulerService service;
 
-    @RequestMapping(value = "/scheduleBrokers", method = RequestMethod.GETl)
+    @RequestMapping(value = "/scheduleBrokers", method = RequestMethod.GET)
     public ConcurrentHashMap<String, Schedule> scheduleTheBrokersFromAWeek() {
         return service.scheduleBrokersForAWeek();
     }
