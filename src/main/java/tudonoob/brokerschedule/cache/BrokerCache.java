@@ -137,5 +137,6 @@ public class BrokerCache {
 
     public void clear() {
         cacheWrapper = new ConcurrentHashMap<>();
+        cacheWrapper.put("buildCache", new ConcurrentHashMap<String, Object>());
     }
 }
