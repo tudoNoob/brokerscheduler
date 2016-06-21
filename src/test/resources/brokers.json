@@ -4,14 +4,14 @@
     "constrains": [
       {
         "dayName": "monday",
-        "isAvailableAfternoon": "false",
+        "isAvailableAfternoon": "true",
         "isAvailableMorning": "false",
         "isAvailableInTheWholeDay": "false"
       },
       {
         "dayName": "tuesday",
         "isAvailableAfternoon": "false",
-        "isAvailableMorning": "false",
+        "isAvailableMorning": "true",
         "isAvailableInTheWholeDay": "false"
       }
     ]
@@ -22,13 +22,13 @@
       {
         "dayName": "monday",
         "isAvailableAfternoon": "false",
-        "isAvailableMorning": "false",
+        "isAvailableMorning": "true",
         "isAvailableInTheWholeDay": "false"
       },
       {
         "dayName": "tuesday",
         "isAvailableAfternoon": "false",
-        "isAvailableMorning": "false",
+        "isAvailableMorning": "true",
         "isAvailableInTheWholeDay": "false"
       }
     ]
@@ -40,11 +40,11 @@
         "dayName": "monday",
         "isAvailableAfternoon": "false",
         "isAvailableMorning": "false",
-        "isAvailableInTheWholeDay": "false"
+        "isAvailableInTheWholeDay": "true"
       },
       {
         "dayName": "tuesday",
-        "isAvailableAfternoon": "false",
+        "isAvailableAfternoon": "true",
         "isAvailableMorning": "false",
         "isAvailableInTheWholeDay": "false"
       }
@@ -56,14 +56,14 @@
       {
         "dayName": "friday",
         "isAvailableAfternoon": "false",
-        "isAvailableMorning": "false",
+        "isAvailableMorning": "true",
         "isAvailableInTheWholeDay": "false"
       },
       {
         "dayName": "tuesday",
         "isAvailableAfternoon": "false",
         "isAvailableMorning": "false",
-        "isAvailableInTheWholeDay": "false"
+        "isAvailableInTheWholeDay": "true"
       }
     ]
   },
@@ -73,7 +73,7 @@
       {
         "dayName": "thursday",
         "isAvailableAfternoon": "false",
-        "isAvailableMorning": "false",
+        "isAvailableMorning": "true",
         "isAvailableInTheWholeDay": "false"
       }
     ]

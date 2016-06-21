@@ -1,7 +1,5 @@
 package tudonoob.brokerschedule.domain;
 
-import tudonoob.brokerschedule.domain.Broker;
-
 public class Schedule {
 
 
@@ -21,5 +19,21 @@ public class Schedule {
 
     public Broker getAfternoon() {
         return afternoon;
+    }
+
+    public void setMorning(Broker morning) {
+        this.morning = morning;
+    }
+
+    public void setAfternoon(Broker afternoon) {
+        this.afternoon = afternoon;
+    }
+
+    @Override
+    public String toString() {
+        return "Schedule{" +
+                "morning=" + morning +
+                ", afternoon=" + afternoon +
+                '}';
     }
 }

@@ -4,12 +4,11 @@ public class Day {
 
     private String dayName;
 
-    private boolean isAvailableAfternoon;
+    private Boolean isAvailableAfternoon;
 
-    private boolean isAvailableMorning;
+    private Boolean isAvailableMorning;
 
-    private boolean isAvailableInTheWholeDay;
-
+    private Boolean isAvailableInTheWholeDay;
 
     public String getDayName() {
         return dayName;
@@ -19,27 +18,27 @@ public class Day {
         this.dayName = dayName;
     }
 
-    public boolean isAvailableAfternoon() {
+    public Boolean getAvailableAfternoon() {
         return isAvailableAfternoon;
     }
 
-    public void setAvailableAfternoon(boolean availableAfternoon) {
+    public void setAvailableAfternoon(Boolean availableAfternoon) {
         isAvailableAfternoon = availableAfternoon;
     }
 
-    public boolean isAvailableMorning() {
+    public Boolean getAvailableMorning() {
         return isAvailableMorning;
     }
 
-    public void setAvailableMorning(boolean availableMorning) {
+    public void setAvailableMorning(Boolean availableMorning) {
         isAvailableMorning = availableMorning;
     }
 
-    public boolean isAvailableInTheWholeDay() {
+    public Boolean getAvailableInTheWholeDay() {
         return isAvailableInTheWholeDay;
     }
 
-    public void setAvailableInTheWholeDay(boolean availableInTheWholeDay) {
+    public void setAvailableInTheWholeDay(Boolean availableInTheWholeDay) {
         isAvailableInTheWholeDay = availableInTheWholeDay;
     }
 
