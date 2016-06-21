@@ -8,6 +8,7 @@ import tudonoob.brokerschedule.domain.Day;
 import tudonoob.brokerschedule.domain.WeekDay;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
 @Component
@@ -127,5 +128,10 @@ public class BrokerCache {
         }
 
         return cache;
+    }
+
+    public ConcurrentHashMap<String, Object> cloneCache() {
+        ConcurrentMap<String, Object> brokers = this.getConcurrentMap();
+        return new ConcurrentHashMap<>(brokers);
     }
 }
