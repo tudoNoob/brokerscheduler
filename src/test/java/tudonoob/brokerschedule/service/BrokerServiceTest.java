@@ -45,7 +45,7 @@ public class BrokerServiceTest {
     public void shouldReturnAListWithSizeZeroGivenAValidName() throws Exception {
         when(cache.getAllBrokers()).thenReturn(brokersMocked);
         List<Object> responseList = service.filterBrokersByName("William");
-        assertEquals(1, responseList.size());
+        assertEquals(2, responseList.size());
     }
 
 
@@ -54,6 +54,8 @@ public class BrokerServiceTest {
         when(cache.getAllBrokers()).thenReturn(brokersMocked);
 
         List<Object> resultBrokers = service.filterBrokersByConstraint("friday");
+
+        assertEquals(1, resultBrokers.size());
 
         boolean allMatch = resultBrokers.stream().allMatch(broker ->
                 ((Broker) broker).getConstrains()

@@ -21,14 +21,15 @@ public class BrokersBuilder {
         return brokersMocked;
     }
 
-    private void buildMapOfBrokers(ConcurrentHashMap<String, Object> brokersMocked, List<Broker> brokersList) {
-
+    private ConcurrentHashMap<String, Object> buildMapOfBrokers(ConcurrentHashMap<String, Object> brokersMocked, List<Broker> brokersList) {
+        final int[] accumulator = {1};
         brokersList.forEach(broker -> {
-            int accumulator = 1;
-            brokersMocked.put(new StringBuilder().append(accumulator).toString(), broker);
-            accumulator += 1;
+
+            brokersMocked.put(new StringBuilder().append(accumulator[0]).toString(), broker);
+            accumulator[0] += 1;
         });
 
+        return brokersMocked;
     }
 
     private List<Broker> getBrokersFromFile() {
