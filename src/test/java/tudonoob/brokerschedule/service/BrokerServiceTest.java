@@ -63,4 +63,31 @@ public class BrokerServiceTest {
 
         assertTrue(allMatch);
     }
+
+    @Test
+    public void shouldReturnEmptyListWhenITryToFindTheBrokersWithOnlyTheConstraintMonday() throws Exception {
+        when(cache.getAllBrokers()).thenReturn(brokersMocked);
+
+        List<Object> brokers = service.filterBrokersByOnlyOneConstraint("monday");
+
+        assertEquals(0, brokers.size());
+    }
+
+    @Test
+    public void shouldReturnListWithSizeOneWhenITryToFindTheBrokerWithOnlyTheConstraintThursday() throws Exception {
+        when(cache.getAllBrokers()).thenReturn(brokersMocked);
+
+        List<Object> brokers = service.filterBrokersByOnlyOneConstraint("thursday");
+
+        assertEquals(1, brokers.size());
+    }
+
+    @Test
+    public void shouldReturnListWithSizeOneWhenITryToFindTheBrokerWithOnlyTheConstraintWednesday() throws Exception {
+        when(cache.getAllBrokers()).thenReturn(brokersMocked);
+
+        List<Object> brokers = service.filterBrokersByOnlyOneConstraint("wednesday");
+
+        assertEquals(1, brokers.size());
+    }
 }

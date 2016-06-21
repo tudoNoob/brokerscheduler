@@ -7,6 +7,12 @@
         "isAvailableAfternoon": "false",
         "isAvailableMorning": "false",
         "isAvailableInTheWholeDay": "false"
+      },
+      {
+        "dayName": "tuesday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
       }
     ]
   },
@@ -15,6 +21,12 @@
     "constrains": [
       {
         "dayName": "monday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
+      },
+      {
+        "dayName": "tuesday",
         "isAvailableAfternoon": "false",
         "isAvailableMorning": "false",
         "isAvailableInTheWholeDay": "false"
@@ -29,6 +41,12 @@
         "isAvailableAfternoon": "false",
         "isAvailableMorning": "false",
         "isAvailableInTheWholeDay": "false"
+      },
+      {
+        "dayName": "tuesday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
       }
     ]
   },
@@ -37,6 +55,34 @@
     "constrains": [
       {
         "dayName": "friday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
+      },
+      {
+        "dayName": "tuesday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
+      }
+    ]
+  },
+  {
+    "name": "William Juca",
+    "constrains": [
+      {
+        "dayName": "thursday",
+        "isAvailableAfternoon": "false",
+        "isAvailableMorning": "false",
+        "isAvailableInTheWholeDay": "false"
+      }
+    ]
+  },
+  {
+    "name": "William JucaBatista",
+    "constrains": [
+      {
+        "dayName": "wednesday",
         "isAvailableAfternoon": "false",
         "isAvailableMorning": "false",
         "isAvailableInTheWholeDay": "false"

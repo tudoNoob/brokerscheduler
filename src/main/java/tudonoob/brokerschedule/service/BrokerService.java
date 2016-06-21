@@ -5,6 +5,8 @@ import org.springframework.stereotype.Service;
 import tudonoob.brokerschedule.cache.BrokerCache;
 import tudonoob.brokerschedule.domain.Broker;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
@@ -20,13 +22,17 @@ public class BrokerService {
     }
 
     public List<Object> filterBrokersByConstraint(String constraint) {
-        Predicate<Object> matchBrokerByDayName = (broker) -> ((Broker) broker).getConstrains()
-                .stream().anyMatch(day -> day.getDayName().equals(constraint));
+        Predicate<Object> matchBrokerByDayName = getPredicateToFilterConstraintByName(constraint);
 
         List<Object> brokersWhichHasTheSameConstrain = cache.getAllBrokers().values()
                 .stream().filter(matchBrokerByDayName).collect(Collectors.toList());
 
         return brokersWhichHasTheSameConstrain;
+    }
+
+    private Predicate<Object> getPredicateToFilterConstraintByName(String constraint) {
+        return (broker) -> ((Broker) broker).getConstrains()
+                .stream().anyMatch(day -> day.getDayName().equals(constraint));
     }
 
     public List<Object> filterBrokersByName(String name) {
@@ -42,4 +48,18 @@ public class BrokerService {
     }
 
 
+    public List<Object> filterBrokersByOnlyOneConstraint(String constraint) {
+        Collection<Object> values = cache.getAllBrokers().values();
+
+        Predicate<Object> matchBrokerByDayName = getPredicateToFilterConstraintByName(constraint);
+        Predicate<Object> matchConstraintBySizeOne = broker -> ((Broker) broker).getConstrains().size() == 1;
+
+        List<Object> brokers = values
+                .stream()
+                .filter(matchBrokerByDayName)
+                .filter(matchConstraintBySizeOne)
+                .collect(Collectors.toList());
+
+        return brokers;
+    }
 }
