@@ -16,6 +16,7 @@ import java.util.concurrent.ConcurrentMap;
 @RestController
 public class BrokerController {
 
+    public static final String CACHE_IS_CLEAR = "Cache IS CLEAR";
     @Autowired
     private BrokerCache cache;
 
@@ -68,6 +69,14 @@ public class BrokerController {
     @RequestMapping(value = "/filterByConstrain/{constrain}")
     public List<Object> filterByConstrain(@PathVariable("constrain") String constrain) {
         return service.filterBrokersByConstraint(constrain);
+    }
+
+    @RequestMapping(value = "/clearCache", method = RequestMethod.DELETE)
+    public String clearCache() {
+
+        cache.clear();
+
+        return CACHE_IS_CLEAR;
     }
 
 }

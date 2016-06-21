@@ -123,7 +123,7 @@ public class BrokerCache {
     public ConcurrentMap<String, Object> getAllBrokers() {
         ConcurrentMap<String, Object> cache = getConcurrentMap();
 
-        if (cache.size() == 0) {
+        if ((cache == null) || (cache.size() == 0)) {
             throw new CacheEmptyException(CACHE_IS_EMPTY_ERROR);
         }
 
@@ -133,5 +133,9 @@ public class BrokerCache {
     public ConcurrentHashMap<String, Object> cloneCache() {
         ConcurrentMap<String, Object> brokers = this.getConcurrentMap();
         return new ConcurrentHashMap<>(brokers);
+    }
+
+    public void clear() {
+        cacheWrapper = new ConcurrentHashMap<>();
     }
 }
