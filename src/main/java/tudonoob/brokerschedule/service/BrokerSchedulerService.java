@@ -71,9 +71,9 @@ public class BrokerSchedulerService {
         brokersPrioritized.forEach(broker -> {
             Day constraint = ((Broker) broker).getConstrains().get(0);
 
-            if (constraint.getAvailableMorning()) {
+            if (constraint.getIsAvailableMorning()) {
                 schedule.setMorning((Broker) broker);
-            } else if (constraint.getAvailableAfternoon()) {
+            } else if (constraint.getIsAvailableAfternoon()) {
                 schedule.setAfternoon((Broker) broker);
             }
 

@@ -75,7 +75,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "[\n  {\n    \"name\": \"Ruth\",\n    \"constrains\": [\n      {\n        \"dayName\": \"monday\",\n        \"availableAfternoon\": true,\n        \"availableMorning\": false,\n        \"availableInTheWholeDay\": false\n      },\n      {\n        \"dayName\": \"tuesday\",\n        \"availableAfternoon\": false,\n        \"availableMorning\": true,\n        \"availableInTheWholeDay\": false\n      }\n    ]\n  },\n  {\n    \"name\": \"Rafael\",\n    \"constrains\": [\n      {\n        \"dayName\": \"monday\",\n        \"availableAfternoon\": false,\n        \"availableMorning\": true,\n        \"availableInTheWholeDay\": false\n      },\n      {\n        \"dayName\": \"tuesday\",\n        \"availableAfternoon\": false,\n        \"availableMorning\": true,\n        \"availableInTheWholeDay\": false\n      }\n    ]\n  },\n  {\n    \"name\": \"Joao\",\n    \"constrains\": [\n      {\n        \"dayName\": \"monday\",\n        \"availableAfternoon\": false,\n        \"availableMorning\": false,\n        \"availableInTheWholeDay\": true\n      },\n      {\n        \"dayName\": \"tuesday\",\n        \"availableAfternoon\": true,\n        \"availableMorning\": false,\n        \"availableInTheWholeDay\": false\n      }\n    ]\n  },\n  {\n    \"name\": \"William\",\n    \"constrains\": [\n      {\n        \"dayName\": \"friday\",\n        \"availableAfternoon\": false,\n        \"availableMorning\": true,\n        \"availableInTheWholeDay\": false\n      },\n      {\n        \"dayName\": \"tuesday\",\n        \"availableAfternoon\": false,\n        \"availableMorning\": false,\n        \"availableInTheWholeDay\": true\n      }\n    ]\n  },\n  {\n    \"name\": \"William Juca\",\n    \"constrains\": [\n      {\n        \"dayName\": \"thursday\",\n        \"availableAfternoon\": false,\n        \"availableMorning\": true,\n        \"availableInTheWholeDay\": false\n      }\n    ]\n  },\n  {\n    \"name\": \"Julia\",\n    \"constrains\": [\n      {\n        \"dayName\": \"wednesday\",\n        \"availableAfternoon\": true,\n        \"availableMorning\": false,\n        \"availableInTheWholeDay\": false\n      }\n    ]\n  }\n]"
+					"raw": "[\n  {\n    \"name\": \"Ruth\",\n    \"constrains\": [\n      {\n        \"dayName\": \"monday\",\n        \"isAvailableAfternoon\": true,\n        \"isAvailableMorning\": false,\n        \"isAvailableInTheWholeDay\": false\n      },\n      {\n        \"dayName\": \"tuesday\",\n        \"isAvailableAfternoon\": false,\n        \"isAvailableMorning\": true,\n        \"isAvailableInTheWholeDay\": false\n      }\n    ]\n  },\n  {\n    \"name\": \"Rafael\",\n    \"constrains\": [\n      {\n        \"dayName\": \"monday\",\n        \"isAvailableAfternoon\": false,\n        \"isAvailableMorning\": true,\n        \"isAvailableInTheWholeDay\": false\n      },\n      {\n        \"dayName\": \"tuesday\",\n        \"isAvailableAfternoon\": false,\n        \"isAvailableMorning\": true,\n        \"isAvailableInTheWholeDay\": false\n      }\n    ]\n  },\n  {\n    \"name\": \"Joao\",\n    \"constrains\": [\n      {\n        \"dayName\": \"monday\",\n        \"isAvailableAfternoon\": false,\n        \"isAvailableMorning\": false,\n        \"isAvailableInTheWholeDay\": true\n      },\n      {\n        \"dayName\": \"tuesday\",\n        \"isAvailableAfternoon\": true,\n        \"isAvailableMorning\": false,\n        \"isAvailableInTheWholeDay\": false\n      }\n    ]\n  },\n  {\n    \"name\": \"William\",\n    \"constrains\": [\n      {\n        \"dayName\": \"friday\",\n       \"isAvailableAfternoon\": false,\n        \"isAvailableMorning\": true,\n        \"isAvailableInTheWholeDay\": false\n      },\n      {\n        \"dayName\": \"tuesday\",\n       \"isAvailableAfternoon\": false,\n        \"isAvailableMorning\": false,\n        \"isAvailableInTheWholeDay\": true\n      }\n    ]\n  },\n  {\n    \"name\": \"William Juca\",\n    \"constrains\": [\n      {\n        \"dayName\": \"thursday\",\n        \"isAvailableAfternoon\": false,\n        \"isAvailableMorning\": true,\n        \"isAvailableInTheWholeDay\": false\n      }\n    ]\n  },\n  {\n    \"name\": \"Julia\",\n    \"constrains\": [\n      {\n        \"dayName\": \"wednesday\",\n        \"isAvailableAfternoon\": true,\n        \"isAvailableMorning\": false,\n        \"isAvailableInTheWholeDay\": false\n      }\n    ]\n  }\n]"
 				},
 				"description": ""
 			},
@@ -112,8 +112,22 @@
 		{
 			"name": "localhost:8080/filterByConstrain/friday",
 			"request": {
-				"url": "localhost:8080/filterByConstrain/friday",
+				"url": "localhost:8080/filterByConstrain/{constraint}",
 				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": []
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/clearCache",
+			"request": {
+				"url": "localhost:8080/clearCache",
+				"method": "DELETE",
 				"header": [],
 				"body": {
 					"mode": "formdata",

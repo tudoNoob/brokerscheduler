@@ -39,15 +39,15 @@ public class BrokerRegistrationStep {
         day.setDayName(dayName);
 
         if (shift.equals("afternoon")) {
-            day.setAvailableAfternoon(true);
+            day.setIsAvailableAfternoon(true);
         } else if (shift.equals("morning")) {
-            day.setAvailableMorning(true);
+            day.setIsAvailableMorning(true);
         }
 
-        boolean isNotAvailableInTheWholeDay = (day.getAvailableAfternoon() || day.getAvailableMorning()) ?
+        boolean isNotAvailableInTheWholeDay = (day.getIsAvailableAfternoon() || day.getIsAvailableMorning()) ?
                 false : true;
 
-        day.setAvailableInTheWholeDay(isNotAvailableInTheWholeDay);
+        day.setIsAvailableInTheWholeDay(isNotAvailableInTheWholeDay);
         constrains.add(day);
     }
 

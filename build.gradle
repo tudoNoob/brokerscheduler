@@ -1,79 +1,85 @@
 buildscript {
-	ext {
-		springBootVersion = '1.3.5.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}") 
-	}
+    ext {
+        springBootVersion = '1.3.5.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+
+    }
 }
 
 apply plugin: 'java'
 apply plugin: 'eclipse'
 apply plugin: 'idea'
-apply plugin: 'spring-boot' 
+apply plugin: 'spring-boot'
+
+
+
 
 jar {
-	baseName = 'brokerschedule'
-	version = '0.0.1-SNAPSHOT'
+    baseName = 'brokerschedule'
+    version = '0.0.1-SNAPSHOT'
 }
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 configurations {
-	itestCompile.extendsFrom testCompile
-	itestRuntime.extendsFrom testRuntime
+    itestCompile.extendsFrom testCompile
+    itestRuntime.extendsFrom testRuntime
 }
 
 sourceSets {
-	itest {
-		java {
-			compileClasspath += main.output + test.output
-			runtimeClasspath += main.output + test.output
-			srcDir file('src/itest/java')
-		}
-		resources.srcDir file('src/itest/resources')
-	}
-	test {
-		resources.srcDir file('src/test/resources')
-	}
+    itest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/itest/java')
+        }
+        resources.srcDir file('src/itest/resources')
+    }
+    test {
+        resources.srcDir file('src/test/resources')
+    }
 }
 task itest(type: Test) {
-	testClassesDir = sourceSets.itest.output.classesDir
-	classpath = sourceSets.itest.runtimeClasspath
+    testClassesDir = sourceSets.itest.output.classesDir
+    classpath = sourceSets.itest.runtimeClasspath
 
-	// This is not needed, but I like to see which tests have run
-	testLogging {
-		events "passed", "skipped", "failed"
-	}
+    // This is not needed, but I like to see which tests have run
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
 }
 
 dependencies {
-	compile('org.springframework.boot:spring-boot-starter-aop')
-	compile('org.springframework.boot:spring-boot-starter-batch')
-	compile('org.springframework.boot:spring-boot-starter-cache')
-	compile('org.springframework.boot:spring-boot-starter-jersey')
-	compile('org.springframework.boot:spring-boot-starter-web')
-	compile('org.springframework.boot:spring-boot-starter-ws')
-	compile group: 'info.cukes', name: 'cucumber-spring', version: '1.2.4'
-	compile group: 'info.cukes', name: 'cucumber-junit', version: '1.2.4'
-	runtime('org.postgresql:postgresql')
-	testCompile('org.springframework.boot:spring-boot-starter-test')
-	testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
-	testCompile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+    compile('org.springframework.boot:spring-boot-starter-aop')
+    compile('org.springframework.boot:spring-boot-starter-batch')
+    compile('org.springframework.boot:spring-boot-starter-cache')
+    compile('org.springframework.boot:spring-boot-starter-jersey')
+    compile('org.springframework.boot:spring-boot-starter-web')
+    compile('org.springframework.boot:spring-boot-starter-ws')
+    compile group: 'info.cukes', name: 'cucumber-spring', version: '1.2.4'
+    compile group: 'info.cukes', name: 'cucumber-junit', version: '1.2.4'
+    compile group: 'org.projectlombok', name: 'lombok', version: '1.16.8'
+    runtime('org.postgresql:postgresql')
+    testCompile('org.springframework.boot:spring-boot-starter-test')
+    testCompile group: 'org.mockito', name: 'mockito-all', version: '1.10.19'
+    testCompile group: 'com.google.code.gson', name: 'gson', version: '2.7'
 
 
 }
 
 
 eclipse {
-	classpath {
-		 containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
-		 containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
-	}
+    classpath {
+        containers.remove('org.eclipse.jdt.launching.JRE_CONTAINER')
+        containers 'org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8'
+    }
 }
