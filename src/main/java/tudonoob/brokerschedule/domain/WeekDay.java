@@ -1,5 +1,10 @@
 package tudonoob.brokerschedule.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+
+@AllArgsConstructor
+@Getter
 public enum WeekDay {
 
     MONDAY("MONDAY"),
@@ -12,11 +17,4 @@ public enum WeekDay {
 
     private String weekDayName;
 
-    WeekDay(String weekDayName) {
-        this.weekDayName = weekDayName;
-    }
-
-    public String getWeekDayName() {
-        return weekDayName;
-    }
 }
