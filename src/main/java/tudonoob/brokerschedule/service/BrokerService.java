@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import tudonoob.brokerschedule.cache.BrokerCache;
 import tudonoob.brokerschedule.domain.Broker;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.function.Predicate;
