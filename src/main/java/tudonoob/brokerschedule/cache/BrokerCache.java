@@ -3,6 +3,7 @@ package tudonoob.brokerschedule.cache;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
+import tudonoob.brokerschedule.annotation.LogMethod;
 import tudonoob.brokerschedule.domain.Broker;
 import tudonoob.brokerschedule.domain.Day;
 import tudonoob.brokerschedule.domain.WeekDay;
@@ -23,6 +24,7 @@ public class BrokerCache {
     @Qualifier("brokerCache")
     private Map<String, Object> cacheWrapper;
 
+    @LogMethod(level = "INFO", message = "Executing add To Cache.")
     public Broker addToCache(Broker broker) {
         ConcurrentMap<String, Object> cache = getConcurrentMap();
 
