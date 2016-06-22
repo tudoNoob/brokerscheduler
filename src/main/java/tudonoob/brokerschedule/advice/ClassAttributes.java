@@ -15,7 +15,7 @@ public class ClassAttributes {
 
     private String returnType;
 
-    public static ClassAttributes buildClassAttributes(JoinPoint joinPoint) {
+    public static ClassAttributes build(JoinPoint joinPoint) {
 
         Signature signature = joinPoint.getSignature();
         String methodName = signature.getName();
