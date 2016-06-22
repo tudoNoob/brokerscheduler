@@ -44,15 +44,6 @@ public class BrokerController {
         return cache.getAllBrokers();
     }
 
-
-    @ExceptionHandler(BrokerScheduleException.class)
-    @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    public ErrorMessage handleError(BrokerScheduleException exception) {
-        return new ErrorMessage(exception.getMessage(), exception.getExceptionName(),
-                HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @RequestMapping(value = "/bulkBrokers", method = RequestMethod.POST)
     public
     @ResponseBody
     List<Broker> addBulkOfBrokers(@RequestBody List<Broker> brokers) {
