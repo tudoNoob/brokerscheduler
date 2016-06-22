@@ -1,30 +1,15 @@
 package tudonoob.brokerschedule.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import org.springframework.http.HttpStatus;
 
+@AllArgsConstructor
+@Getter
 public class ErrorMessage {
 
     private final String exceptionName;
     private final String errorMessage;
     private final HttpStatus status;
 
-
-    public ErrorMessage(String errorMessage, String exceptionName, HttpStatus status) {
-        this.errorMessage = errorMessage;
-        this.exceptionName = exceptionName;
-        this.status = status;
-    }
-
-
-    public String getErrorMessage() {
-        return errorMessage;
-    }
-
-    public HttpStatus getStatus() {
-        return status;
-    }
-
-    public String getExceptionName() {
-        return exceptionName;
-    }
 }

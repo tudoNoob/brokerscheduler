@@ -1,5 +1,7 @@
 package tudonoob.brokerschedule.advice;
 
+import lombok.AllArgsConstructor;
+import lombok.ToString;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -7,6 +9,8 @@ import org.aspectj.lang.reflect.MethodSignature;
 import java.lang.reflect.Method;
 import java.util.Arrays;
 
+@ToString
+@AllArgsConstructor
 public class ClassAttributes {
 
     private String methodName;
@@ -27,18 +31,5 @@ public class ClassAttributes {
 
         return new ClassAttributes(methodName, arguments, returnType);
 
-    }
-
-    public ClassAttributes(String methodName, String argument, String returnType) {
-        this.methodName = methodName;
-        this.argument = argument;
-        this.returnType = returnType;
-    }
-
-
-    @Override
-    public String toString() {
-        return "ClassAttributes [methodName=" + methodName + ", argument=" + argument + ", returnType=" + returnType
-                + "]";
     }
 }
