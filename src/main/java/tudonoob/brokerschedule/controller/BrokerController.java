@@ -1,5 +1,6 @@
 package tudonoob.brokerschedule.controller;
 
+import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -16,7 +17,8 @@ import java.util.concurrent.ConcurrentMap;
 @RestController
 public class BrokerController {
 
-    public static final String CACHE_IS_CLEAR = "Cache IS CLEAR";
+    private static final String CACHE_IS_CLEAR = "Cache IS CLEAR";
+
     @Autowired
     private BrokerCache cache;
 
@@ -64,9 +66,7 @@ public class BrokerController {
 
     @RequestMapping(value = "/clearCache", method = RequestMethod.DELETE)
     public String clearCache() {
-
         cache.clear();
-
         return CACHE_IS_CLEAR;
     }
 
