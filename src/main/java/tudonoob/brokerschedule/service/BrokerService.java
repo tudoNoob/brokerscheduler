@@ -51,7 +51,7 @@ public class BrokerService {
         Collection<Object> values = cache.getAllBrokers().values();
 
         Predicate<Object> matchBrokerByDayName = getPredicateToFilterConstraintByName(constraint);
-        Predicate<Object> matchConstraintBySizeOne = broker -> ((Broker) broker).getConstrains().size() == 1;
+        Predicate<Object> matchConstraintBySizeOne = getPredicateForOnlyBrokersWithConstraintsSizeOne();
 
         List<Object> brokers = values
                 .stream()
@@ -60,5 +60,9 @@ public class BrokerService {
                 .collect(Collectors.toList());
 
         return brokers;
+    }
+
+    private Predicate<Object> getPredicateForOnlyBrokersWithConstraintsSizeOne() {
+        return broker -> ((Broker) broker).getConstrains().size() == 1;
     }
 }

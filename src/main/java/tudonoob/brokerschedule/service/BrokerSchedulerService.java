@@ -48,8 +48,8 @@ public class BrokerSchedulerService {
         if (cacheClone == null) {
             throw new NoBrokerException(NO_BROKERS_MSG_ERROR);
         }
-        prioritizeThoseBrokersWhoHasOneConstraint();
 
+        prioritizeThoseBrokersWhoHasOneConstraint();
 
         return scheduleMap;
     }
@@ -76,7 +76,6 @@ public class BrokerSchedulerService {
             } else if (constraint.getIsAvailableAfternoon()) {
                 schedule.setAfternoon((Broker) broker);
             }
-
 
         });
     }
