@@ -33,15 +33,14 @@ public class LoggerAdvice {
 
     @Before("execution(* tudonoob.brokerschedule.*.*..*(..))")
     public void processAnnotaionLoggger(JoinPoint joinPoint) {
+        LogMethod annotation = getLogMethodAnnotation(joinPoint);
 
-        Method method = getMethod(joinPoint);
-
-        LogMethod annotation = method.getAnnotation(LogMethod.class);
-
-        if (annotation == null) {
-            return;
+        if (annotation != null) {
+            executeLogForAppropriateLevel(joinPoint, annotation);
         }
+    }
 
+    private void executeLogForAppropriateLevel(JoinPoint joinPoint, LogMethod annotation) {
         Logger logger = createLog(joinPoint);
 
         String level = annotation.level().toLowerCase();
@@ -49,7 +48,17 @@ public class LoggerAdvice {
 
         Map<String, BiConsumer<String, Logger>> map = buildMap();
         map.get(level).accept(message, logger);
+    }
 
+    private LogMethod getLogMethodAnnotation(JoinPoint joinPoint) {
+        Method method = getMethod(joinPoint);
+
+        LogMethod annotation = method.getAnnotation(LogMethod.class);
+
+        if (annotation == null) {
+            return null;
+        }
+        return annotation;
     }
 
     private Method getMethod(JoinPoint joinPoint) {
