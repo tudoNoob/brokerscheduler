@@ -24,7 +24,7 @@ public class LoggerAdvice {
 
         ClassAttributes classAttributes = ClassAttributes.build(joinPoint);
 
-        LOGGER.errorf("Executing the following class/method: %s", classAttributes.toString());
+        LOGGER.infof("Executing the following class/method: %s", classAttributes.toString());
     }
 
     public Logger createLog(JoinPoint joinPoint) {
@@ -55,17 +55,13 @@ public class LoggerAdvice {
 
         LogMethod annotation = method.getAnnotation(LogMethod.class);
 
-        if (annotation == null) {
-            return null;
-        }
         return annotation;
     }
 
     private Method getMethod(JoinPoint joinPoint) {
-
         final MethodSignature methodSignature = (MethodSignature) joinPoint.getSignature();
-        return methodSignature.getMethod();
 
+        return methodSignature.getMethod();
     }
 
     private Map<String, BiConsumer<String, Logger>> buildMap() {
