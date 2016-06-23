@@ -44,14 +44,18 @@ public class BrokerSchedulerService {
 
 
     public ConcurrentHashMap<String, Schedule> scheduleBrokersForAWeek() {
-        cacheClone = cache.cloneCache();
-        if (cacheClone == null) {
-            throw new NoBrokerException(NO_BROKERS_MSG_ERROR);
-        }
+        createAndValidateCloneCache();
 
         prioritizeThoseBrokersWhoHasOneConstraint();
 
         return scheduleMap;
+    }
+
+    private void createAndValidateCloneCache() {
+        cacheClone = cache.cloneCache();
+        if (cacheClone == null) {
+            throw new NoBrokerException(NO_BROKERS_MSG_ERROR);
+        }
     }
 
     private void prioritizeThoseBrokersWhoHasOneConstraint() {
