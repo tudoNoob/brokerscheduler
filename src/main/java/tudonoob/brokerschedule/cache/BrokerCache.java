@@ -17,8 +17,8 @@ public class BrokerCache {
 
     private static final String BROKER_ERROR = "Broker already exist.";
     private static final String CONSTRAIN_ERROR = "Constrain with error.";
-    public static final String CACHE_IS_EMPTY_ERROR = "Cache is Empty";
-    public static final String FIRST_ID_NUMBER = "1";
+    private static final String CACHE_IS_EMPTY_ERROR = "Cache is Empty";
+    private static final String FIRST_ID_NUMBER = "1";
 
     @Autowired
     @Qualifier("brokerCache")
@@ -28,19 +28,25 @@ public class BrokerCache {
     public Broker addToCache(Broker broker) {
         ConcurrentMap<String, Object> cache = getConcurrentMap();
 
-        if (existsBroker(broker, cache)) {
-            throw new BrokerAddOperationException(BROKER_ERROR);
-        }
+        validateBroker(broker, cache);
 
-        if (!validateConstrains(broker.getConstrains())) {
-            throw new BrokerAddOperationException(CONSTRAIN_ERROR);
-        }
+        String newIdForNewBroker = getIdForNewBrokerAndValidateIfCacheIsEmpty(cache);
 
-        String newIdForNewBroker = getIdForNewBroker(cache);
-
-        cache.put(newIdForNewBroker, broker);
+        addBrokerIntoCache(broker, cache, newIdForNewBroker);
 
         return getBroker(newIdForNewBroker);
+    }
+
+    private void addBrokerIntoCache(Broker broker, ConcurrentMap<String, Object> cache, String newIdForNewBroker) {
+        cache.put(newIdForNewBroker, broker);
+    }
+
+    private void validateBroker(Broker broker, ConcurrentMap<String, Object> cache) {
+        if (existsBroker(broker, cache)) {
+            throw new BrokerAddOperationException(BROKER_ERROR);
+        } else if (!validateConstrains(broker.getConstrains())) {
+            throw new BrokerAddOperationException(CONSTRAIN_ERROR);
+        }
     }
 
     public Broker updateBroker(String id, Broker broker) {
@@ -48,24 +54,20 @@ public class BrokerCache {
         Broker oldBroker = getBroker(id);
 
         if (oldBroker == null) {
-            cache.put(id, broker);
+            addBrokerIntoCache(broker, cache, id);
         } else {
             cache.remove(id);
-            cache.put(id, broker);
+            addBrokerIntoCache(broker, cache, id);
         }
 
         return broker;
     }
 
     private boolean existsBroker(Broker broker, ConcurrentMap<String, Object> cache) {
-        if (cache.size() == 0) {
-            return false;
-        }
-
         return cache.containsValue(broker);
     }
 
-    private String getIdForNewBroker(ConcurrentMap<String, Object> cache) {
+    private String getIdForNewBrokerAndValidateIfCacheIsEmpty(ConcurrentMap<String, Object> cache) {
 
         if (cache.size() == 0) {
             return FIRST_ID_NUMBER;
