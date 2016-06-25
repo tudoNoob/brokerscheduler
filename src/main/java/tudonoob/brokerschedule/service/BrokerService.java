@@ -23,8 +23,11 @@ public class BrokerService {
     public List<Object> filterBrokersByConstraint(String constraint) {
         Predicate<Object> matchBrokerByDayName = getPredicateToFilterConstraintByName(constraint);
 
-        List<Object> brokersWhichHasTheSameConstrain = cache.getAllBrokers().values()
-                .stream().filter(matchBrokerByDayName).collect(Collectors.toList());
+        List<Object> brokersWhichHasTheSameConstrain = cache.getAllBrokers()
+                .values()
+                .stream()
+                .filter(matchBrokerByDayName)
+                .collect(Collectors.toList());
 
         return brokersWhichHasTheSameConstrain;
     }
