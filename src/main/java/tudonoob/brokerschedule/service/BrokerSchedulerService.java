@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class BrokerSchedulerService {
 
-    public static final String NO_BROKERS_MSG_ERROR = "Should had some brokers to be able to schedule for a week.";
+    private static final String NO_BROKERS_MSG_ERROR = "Should had some brokers to be able to schedule for a week.";
 
     private ConcurrentHashMap<String, Object> cacheClone;
 
