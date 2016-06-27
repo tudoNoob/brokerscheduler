@@ -5,6 +5,7 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.jboss.logging.Logger;
+import org.jboss.logging.Logger.Level;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import tudonoob.brokerschedule.annotation.LogMethod;
@@ -27,7 +28,7 @@ public class LoggerAdvice {
 
         LOGGER.infof("Executing the following class/method: %s", classAttributes.toString());
     }
-    
+
     @Before("execution(* tudonoob.brokerschedule.*.*..*(..))")
     public void processAnnotaionLoggger(JoinPoint joinPoint) {
         LogMethod annotation = getLogMethodAnnotation(joinPoint);
@@ -44,11 +45,17 @@ public class LoggerAdvice {
     private void executeLogForAppropriateLevel(JoinPoint joinPoint, LogMethod annotation) {
         Logger logger = createLog(joinPoint);
 
-        String level = annotation.level().toLowerCase();
+        Level level = getLoggerLevel(annotation);
         String message = createMessage(annotation, joinPoint);
 
-        Map<String, BiConsumer<String, Logger>> map = buildMap();
+        Map<Level, BiConsumer<String, Logger>> map = buildMap();
         map.get(level).accept(message, logger);
+    }
+
+    private Level getLoggerLevel(LogMethod annotation) {
+
+        String level = annotation.level();
+        return Level.valueOf(level);
     }
 
     private String createMessage(LogMethod annotation, JoinPoint joinPoint) {
@@ -76,12 +83,12 @@ public class LoggerAdvice {
         return methodSignature.getMethod();
     }
 
-    private Map<String, BiConsumer<String, Logger>> buildMap() {
-        Map<String, BiConsumer<String, Logger>> map = new HashMap<>();
-        map.put("warn", (message, logger) -> logger.warn(message));
-        map.put("debug", (message, logger) -> logger.debug(message));
-        map.put("info", (message, logger) -> logger.info(message));
-        map.put("error", (message, logger) -> logger.error(message));
+    private Map<Level, BiConsumer<String, Logger>> buildMap() {
+        Map<Level, BiConsumer<String, Logger>> map = new HashMap<>();
+        map.put(Level.WARN, (message, logger) -> logger.warn(message));
+        map.put(Level.DEBUG, (message, logger) -> logger.debug(message));
+        map.put(Level.INFO, (message, logger) -> logger.info(message));
+        map.put(Level.ERROR, (message, logger) -> logger.error(message));
         return map;
     }
 
