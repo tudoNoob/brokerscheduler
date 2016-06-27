@@ -21,7 +21,7 @@ public class BrokerService {
         this.cache = cache;
     }
 
-    @LogMethod(level = "INFO", message = "Executing Brokers by Constraint.")
+    @LogMethod(level = "INFO")
     public List<Object> filterBrokersByConstraint(String constraint) {
         Predicate<Object> matchBrokerByDayName = getPredicateToFilterConstraintByName(constraint);
 
@@ -39,7 +39,7 @@ public class BrokerService {
                 .stream().anyMatch(day -> day.getDayName().equals(constraint));
     }
 
-    @LogMethod(level = "INFO", message = "Executing Brokers By Name.")
+    @LogMethod(level = "INFO")
     public List<Object> filterBrokersByName(String name) {
 
         Predicate<Object> matchBrokerByName = (broker) -> ((Broker) broker).getName().contains(name);
@@ -52,7 +52,7 @@ public class BrokerService {
         return brokersFilterByName;
     }
 
-    @LogMethod(level = "INFO", message = "Executing Brokers By only one constraint.")
+    @LogMethod(level = "INFO")
     public List<Object> filterBrokersByOnlyOneConstraint(String constraint) {
         Collection<Object> values = cache.getAllBrokers().values();
 

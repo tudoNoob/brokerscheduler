@@ -12,6 +12,8 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface LogMethod {
 
+    String DEFAULT_MESSAGE = "Executing %s.";
+
     /**
      * This attribute is to set the log level.
      */
@@ -19,7 +21,8 @@ public @interface LogMethod {
 
     /**
      * This attribute is the message to be logged.
+     * The default message is: Executing {method name}.
      */
-    String message() default "";
+    String message() default DEFAULT_MESSAGE;
 
 }

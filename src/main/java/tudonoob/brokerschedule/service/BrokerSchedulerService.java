@@ -45,7 +45,7 @@ public class BrokerSchedulerService {
     }
 
 
-    @LogMethod(level = "INFO", message = "Executing schedule Brokers.")
+    @LogMethod(level = "INFO")
     public ConcurrentHashMap<String, Schedule> scheduleBrokersForAWeek() {
         createAndValidateCloneCache();
 

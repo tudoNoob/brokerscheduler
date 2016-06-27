@@ -1,6 +1,7 @@
 package tudonoob.brokerschedule.advice;
 
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.ToString;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.Signature;
@@ -13,6 +14,7 @@ import java.util.Arrays;
 @AllArgsConstructor
 public class ClassAttributes {
 
+    @Getter
     private String methodName;
 
     private String argument;

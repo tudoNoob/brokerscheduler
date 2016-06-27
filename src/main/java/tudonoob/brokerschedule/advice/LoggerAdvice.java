@@ -6,6 +6,7 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.jboss.logging.Logger;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import tudonoob.brokerschedule.annotation.LogMethod;
 
 import java.lang.reflect.Method;
@@ -44,10 +45,21 @@ public class LoggerAdvice {
         Logger logger = createLog(joinPoint);
 
         String level = annotation.level().toLowerCase();
-        String message = annotation.message();
+        String message = createMessage(annotation, joinPoint);
 
         Map<String, BiConsumer<String, Logger>> map = buildMap();
         map.get(level).accept(message, logger);
+    }
+
+    private String createMessage(LogMethod annotation, JoinPoint joinPoint) {
+        String message = annotation.message();
+
+        if (message.contains("%s")) {
+            ClassAttributes build = ClassAttributes.build(joinPoint);
+            message = String.format(message, build.getMethodName());
+        }
+
+        return message;
     }
 
     private LogMethod getLogMethodAnnotation(JoinPoint joinPoint) {
