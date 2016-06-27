@@ -8,6 +8,7 @@ import tudonoob.brokerschedule.domain.Day;
 import tudonoob.brokerschedule.domain.Schedule;
 import tudonoob.brokerschedule.domain.WeekDay;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -19,7 +20,7 @@ public class BrokerSchedulerService {
     private ConcurrentHashMap<String, Object> cacheClone;
 
     private BrokerCache cache;
-    
+
     private BrokerService brokerService;
 
     private ConcurrentHashMap<String, Schedule> scheduleMap;
@@ -59,7 +60,7 @@ public class BrokerSchedulerService {
     }
 
     private void prioritizeThoseBrokersWhoHasOneConstraint() {
-        for (WeekDay day : WeekDay.values()) {
+        Arrays.asList(WeekDay.values()).forEach(day -> {
             List<Object> brokersPrioritized = brokerService.
                     filterBrokersByOnlyOneConstraint(day.getWeekDayName().toLowerCase());
 
@@ -68,7 +69,7 @@ public class BrokerSchedulerService {
             addAListOfBrokersToSchedule(brokersPrioritized, schedule);
 
             removeBrokersFromCache(brokersPrioritized);
-        }
+        });
     }
 
     private void addAListOfBrokersToSchedule(List<Object> brokersPrioritized, Schedule schedule) {
