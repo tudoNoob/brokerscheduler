@@ -27,11 +27,7 @@ public class LoggerAdvice {
 
         LOGGER.infof("Executing the following class/method: %s", classAttributes.toString());
     }
-
-    public Logger createLog(JoinPoint joinPoint) {
-        return Logger.getLogger(joinPoint.getSignature().getName());
-    }
-
+    
     @Before("execution(* tudonoob.brokerschedule.*.*..*(..))")
     public void processAnnotaionLoggger(JoinPoint joinPoint) {
         LogMethod annotation = getLogMethodAnnotation(joinPoint);
@@ -39,6 +35,10 @@ public class LoggerAdvice {
         if (annotation != null) {
             executeLogForAppropriateLevel(joinPoint, annotation);
         }
+    }
+
+    private Logger createLog(JoinPoint joinPoint) {
+        return Logger.getLogger(joinPoint.getSignature().getName());
     }
 
     private void executeLogForAppropriateLevel(JoinPoint joinPoint, LogMethod annotation) {
