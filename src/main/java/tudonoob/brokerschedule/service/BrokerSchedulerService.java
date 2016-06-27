@@ -2,6 +2,7 @@ package tudonoob.brokerschedule.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tudonoob.brokerschedule.annotation.LogMethod;
 import tudonoob.brokerschedule.cache.BrokerCache;
 import tudonoob.brokerschedule.domain.Broker;
 import tudonoob.brokerschedule.domain.Day;
@@ -44,6 +45,7 @@ public class BrokerSchedulerService {
     }
 
 
+    @LogMethod(level = "INFO", message = "Executing schedule Brokers.")
     public ConcurrentHashMap<String, Schedule> scheduleBrokersForAWeek() {
         createAndValidateCloneCache();
 

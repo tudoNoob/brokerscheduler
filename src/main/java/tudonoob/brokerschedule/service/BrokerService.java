@@ -2,6 +2,7 @@ package tudonoob.brokerschedule.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import tudonoob.brokerschedule.annotation.LogMethod;
 import tudonoob.brokerschedule.cache.BrokerCache;
 import tudonoob.brokerschedule.domain.Broker;
 
@@ -20,6 +21,7 @@ public class BrokerService {
         this.cache = cache;
     }
 
+    @LogMethod(level = "INFO", message = "Executing Brokers by Constraint.")
     public List<Object> filterBrokersByConstraint(String constraint) {
         Predicate<Object> matchBrokerByDayName = getPredicateToFilterConstraintByName(constraint);
 
@@ -37,6 +39,7 @@ public class BrokerService {
                 .stream().anyMatch(day -> day.getDayName().equals(constraint));
     }
 
+    @LogMethod(level = "INFO", message = "Executing Brokers By Name.")
     public List<Object> filterBrokersByName(String name) {
 
         Predicate<Object> matchBrokerByName = (broker) -> ((Broker) broker).getName().contains(name);
@@ -49,7 +52,7 @@ public class BrokerService {
         return brokersFilterByName;
     }
 
-
+    @LogMethod(level = "INFO", message = "Executing Brokers By only one constraint.")
     public List<Object> filterBrokersByOnlyOneConstraint(String constraint) {
         Collection<Object> values = cache.getAllBrokers().values();
 
