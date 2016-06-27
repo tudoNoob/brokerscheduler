@@ -54,7 +54,7 @@ public class LoggerAdvice {
     private String createMessage(LogMethod annotation, JoinPoint joinPoint) {
         String message = annotation.message();
 
-        if (message.contains("%s")) {
+        if (message.equals(annotation.DEFAULT_MESSAGE)) {
             ClassAttributes build = ClassAttributes.build(joinPoint);
             message = String.format(message, build.getMethodName());
         }
