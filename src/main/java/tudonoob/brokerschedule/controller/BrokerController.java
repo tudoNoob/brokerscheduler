@@ -49,7 +49,6 @@ public class BrokerController {
     public
     @ResponseBody
     List<Broker> addBulkOfBrokers(@RequestBody List<Broker> brokers) {
-        System.out.println(brokers);
         brokers.forEach((broker) -> cache.addToCache(broker));
         return brokers;
     }
