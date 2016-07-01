@@ -1,13 +1,10 @@
 package tudonoob.brokerschedule.controller;
 
-import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.cache.BrokerScheduleException;
 import tudonoob.brokerschedule.domain.Broker;
-import tudonoob.brokerschedule.model.ErrorMessage;
 import tudonoob.brokerschedule.service.BrokerService;
 
 import javax.validation.Valid;
@@ -16,8 +13,6 @@ import java.util.concurrent.ConcurrentMap;
 
 @RestController
 public class BrokerController {
-
-    private static final String CACHE_IS_CLEAR = "Cache IS CLEAR";
 
     @Autowired
     private BrokerCache cache;
