@@ -1,7 +1,6 @@
 package tudonoob.brokerschedule.domainmodel;
 
 import com.google.common.base.Preconditions;
-import tudonoob.brokerschedule.model.DayModel;
 
 import java.util.List;
 
