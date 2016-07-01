@@ -26,6 +26,7 @@ public class BrokerController {
     private BrokerService service;
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     public
     @ResponseBody
     Broker registerBroker(@RequestBody @Valid Broker broker) {
@@ -33,6 +34,7 @@ public class BrokerController {
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
+    @ResponseStatus(HttpStatus.OK)
     public
     @ResponseBody
     Broker updateBroker(@PathVariable("id") String id, @RequestBody Broker broker) {
@@ -40,6 +42,7 @@ public class BrokerController {
     }
 
     @RequestMapping(value = "/getAllBrokers", method = RequestMethod.GET)
+    @ResponseStatus(HttpStatus.OK)
     public
     @ResponseBody
     ConcurrentMap<String, Object> getAllBrokers() {
@@ -47,6 +50,7 @@ public class BrokerController {
     }
 
     @RequestMapping(value = "bulkBrokers", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.CREATED)
     public
     @ResponseBody
     List<Broker> addBulkOfBrokers(@RequestBody List<Broker> brokers) {
@@ -56,19 +60,21 @@ public class BrokerController {
     }
 
     @RequestMapping(value = "/filterByName/{name}", method = RequestMethod.POST)
+    @ResponseStatus(HttpStatus.OK)
     public List<Object> filterByNameMatcher(@PathVariable("name") String name) {
         return service.filterBrokersByName(name);
     }
 
     @RequestMapping(value = "/filterByConstrain/{constrain}")
+    @ResponseStatus(HttpStatus.OK)
     public List<Object> filterByConstrain(@PathVariable("constrain") String constrain) {
         return service.filterBrokersByConstraint(constrain);
     }
 
     @RequestMapping(value = "/clearCache", method = RequestMethod.DELETE)
-    public String clearCache() {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void clearCache() {
         cache.clear();
-        return CACHE_IS_CLEAR;
     }
 
 }
