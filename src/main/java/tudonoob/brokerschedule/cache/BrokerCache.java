@@ -4,9 +4,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import tudonoob.brokerschedule.annotation.LogMethod;
-import tudonoob.brokerschedule.domain.Broker;
-import tudonoob.brokerschedule.domain.Day;
-import tudonoob.brokerschedule.domain.WeekDay;
+import tudonoob.brokerschedule.model.Broker;
+import tudonoob.brokerschedule.model.Day;
+import tudonoob.brokerschedule.model.WeekDay;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;

@@ -4,10 +4,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tudonoob.brokerschedule.annotation.LogMethod;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.domain.Broker;
-import tudonoob.brokerschedule.domain.Day;
-import tudonoob.brokerschedule.domain.Schedule;
-import tudonoob.brokerschedule.domain.WeekDay;
+import tudonoob.brokerschedule.model.Broker;
+import tudonoob.brokerschedule.model.Day;
+import tudonoob.brokerschedule.model.Schedule;
+import tudonoob.brokerschedule.model.WeekDay;
 
 import java.util.Arrays;
 import java.util.List;

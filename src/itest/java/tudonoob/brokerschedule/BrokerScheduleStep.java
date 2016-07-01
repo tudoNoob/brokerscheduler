@@ -4,7 +4,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 import tudonoob.brokerschedule.controller.BrokerScheduleController;
-import tudonoob.brokerschedule.domain.Schedule;
+import tudonoob.brokerschedule.model.Schedule;
 
 import java.util.concurrent.ConcurrentHashMap;
 

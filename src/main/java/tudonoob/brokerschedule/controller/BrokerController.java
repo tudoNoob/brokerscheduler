@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.domain.Broker;
+import tudonoob.brokerschedule.model.Broker;
 import tudonoob.brokerschedule.service.BrokerService;
 
 import javax.validation.Valid;

@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.domain.Broker;
+import tudonoob.brokerschedule.model.Broker;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;

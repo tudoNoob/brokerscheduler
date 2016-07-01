@@ -1,7 +1,7 @@
 package tudonoob.brokerschedule.service;
 
 import com.google.gson.Gson;
-import tudonoob.brokerschedule.domain.Broker;
+import tudonoob.brokerschedule.model.Broker;
 
 import java.io.InputStreamReader;
 import java.util.Arrays;

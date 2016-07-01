@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tudonoob.brokerschedule.annotation.LogMethod;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.domain.Broker;
+import tudonoob.brokerschedule.model.Broker;
 
 import java.util.Collection;
 import java.util.List;

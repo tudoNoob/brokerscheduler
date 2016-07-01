@@ -5,13 +5,9 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.domain.Broker;
-import tudonoob.brokerschedule.domain.Day;
-import tudonoob.brokerschedule.domain.Schedule;
-import tudonoob.brokerschedule.domain.WeekDay;
+import tudonoob.brokerschedule.model.Schedule;
+import tudonoob.brokerschedule.model.WeekDay;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
 import static org.junit.Assert.*;

@@ -3,8 +3,8 @@ package tudonoob.brokerschedule;
 import cucumber.api.java.en.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import tudonoob.brokerschedule.controller.BrokerController;
-import tudonoob.brokerschedule.domain.Broker;
-import tudonoob.brokerschedule.domain.Day;
+import tudonoob.brokerschedule.model.Broker;
+import tudonoob.brokerschedule.model.Day;
 
 import java.util.ArrayList;
 import java.util.List;

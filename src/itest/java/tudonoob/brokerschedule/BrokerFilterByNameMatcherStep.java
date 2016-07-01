@@ -4,7 +4,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 import tudonoob.brokerschedule.controller.BrokerController;
-import tudonoob.brokerschedule.domain.Broker;
+import tudonoob.brokerschedule.model.Broker;
 
 import java.util.List;
 

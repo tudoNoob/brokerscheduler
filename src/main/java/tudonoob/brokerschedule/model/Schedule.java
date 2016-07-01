@@ -1,4 +1,4 @@
-package tudonoob.brokerschedule.domain;
+package tudonoob.brokerschedule.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

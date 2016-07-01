@@ -1,8 +1,7 @@
-package tudonoob.brokerschedule.domain;
+package tudonoob.brokerschedule.model;
 
 import lombok.*;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.stereotype.Component;
 
 import javax.validation.constraints.NotNull;
 import java.util.List;
