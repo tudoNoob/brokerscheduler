@@ -5,7 +5,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 import tudonoob.brokerschedule.controller.BrokerController;
-import tudonoob.brokerschedule.model.Broker;
+import tudonoob.brokerschedule.model.BrokerModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,27 +20,27 @@ public class BrokerBulkStep {
     @Autowired
     private BrokerRegistrationStep registrationStep;
 
-    private List<Broker> bulkBrokers;
+    private List<BrokerModel> bulkBrokerModels;
 
-    private List<Broker> responseBrokers;
+    private List<BrokerModel> responseBrokerModels;
 
     public BrokerBulkStep() {
-        bulkBrokers = new ArrayList<>();
+        bulkBrokerModels = new ArrayList<>();
     }
 
     @And("add broker to bulk")
     public void add_broker_to_bulk() {
-        bulkBrokers.add(registrationStep.getBroker());
+        bulkBrokerModels.add(registrationStep.getBrokerModel());
     }
 
     @When("I bulk this list of brokers")
     public void i_bulk_this_list_of_brokers() {
-        responseBrokers = controller.addBulkOfBrokers(bulkBrokers);
+        responseBrokerModels = controller.addBulkOfBrokers(bulkBrokerModels);
     }
 
     @Then("return the same list that I bulk")
     public void return_the_same_list_that_i_bulk() {
-        assertEquals(responseBrokers, bulkBrokers);
+        assertEquals(responseBrokerModels, bulkBrokerModels);
     }
 
 }

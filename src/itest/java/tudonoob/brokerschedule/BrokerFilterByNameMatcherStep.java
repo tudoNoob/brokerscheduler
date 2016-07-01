@@ -4,7 +4,7 @@ import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
 import org.springframework.beans.factory.annotation.Autowired;
 import tudonoob.brokerschedule.controller.BrokerController;
-import tudonoob.brokerschedule.model.Broker;
+import tudonoob.brokerschedule.model.BrokerModel;
 
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class BrokerFilterByNameMatcherStep {
         List<Object> objects = controller.filterByNameMatcher(name);
         onlyHasInTheArrayMatcherForTheName = objects
                 .stream()
-                .allMatch((broker) -> ((Broker) broker).getName().contains(name));
+                .allMatch((broker) -> ((BrokerModel) broker).getName().contains(name));
     }
 
     @Then("should bring the list with only the brokers that match the name \"([^\"]*)\"")

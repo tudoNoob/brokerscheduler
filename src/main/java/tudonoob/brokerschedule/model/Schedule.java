@@ -7,8 +7,8 @@ import lombok.Data;
 @AllArgsConstructor
 public class Schedule {
 
-    private Broker morning;
+    private BrokerModel morning;
 
-    private Broker afternoon;
+    private BrokerModel afternoon;
 
 }

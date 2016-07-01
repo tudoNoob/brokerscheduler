@@ -1,7 +1,7 @@
 package tudonoob.brokerschedule.service;
 
 import com.google.gson.Gson;
-import tudonoob.brokerschedule.model.Broker;
+import tudonoob.brokerschedule.model.BrokerModel;
 
 import java.io.InputStreamReader;
 import java.util.Arrays;
@@ -14,14 +14,14 @@ public class BrokersBuilder {
     public ConcurrentHashMap<String, Object> buildBrokersMockFromFile() {
         ConcurrentHashMap<String, Object> brokersMocked = new ConcurrentHashMap<>();
 
-        List<Broker> brokersList = getBrokersFromFile();
+        List<BrokerModel> brokersList = getBrokersFromFile();
 
         buildMapOfBrokers(brokersMocked, brokersList);
 
         return brokersMocked;
     }
 
-    private ConcurrentHashMap<String, Object> buildMapOfBrokers(ConcurrentHashMap<String, Object> brokersMocked, List<Broker> brokersList) {
+    private ConcurrentHashMap<String, Object> buildMapOfBrokers(ConcurrentHashMap<String, Object> brokersMocked, List<BrokerModel> brokersList) {
         final int[] accumulator = {1};
         brokersList.forEach(broker -> {
 
@@ -32,11 +32,11 @@ public class BrokersBuilder {
         return brokersMocked;
     }
 
-    private List<Broker> getBrokersFromFile() {
+    private List<BrokerModel> getBrokersFromFile() {
         Gson gson = new Gson();
-        Broker[] brokers = gson.fromJson(new InputStreamReader(
-                getClass().getResourceAsStream("/brokers.json")), Broker[].class);
-        return Arrays.asList(brokers);
+        BrokerModel[] brokerModels = gson.fromJson(new InputStreamReader(
+                getClass().getResourceAsStream("/brokers.json")), BrokerModel[].class);
+        return Arrays.asList(brokerModels);
     }
 
 

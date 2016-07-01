@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tudonoob.brokerschedule.annotation.LogMethod;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.model.Broker;
-import tudonoob.brokerschedule.model.Day;
+import tudonoob.brokerschedule.model.BrokerModel;
+import tudonoob.brokerschedule.model.DayModel;
 import tudonoob.brokerschedule.model.Schedule;
 import tudonoob.brokerschedule.model.WeekDay;
 
@@ -76,12 +76,12 @@ public class BrokerSchedulerService {
 
     private void addAListOfBrokersToSchedule(List<Object> brokersPrioritized, Schedule schedule) {
         brokersPrioritized.forEach(broker -> {
-            Day constraint = ((Broker) broker).getConstrains().get(0);
+            DayModel constraint = ((BrokerModel) broker).getConstrains().get(0);
 
             if (constraint.getIsAvailableMorning()) {
-                schedule.setMorning((Broker) broker);
+                schedule.setMorning((BrokerModel) broker);
             } else if (constraint.getIsAvailableAfternoon()) {
-                schedule.setAfternoon((Broker) broker);
+                schedule.setAfternoon((BrokerModel) broker);
             }
 
         });

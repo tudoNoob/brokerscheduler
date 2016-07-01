@@ -3,8 +3,8 @@ package tudonoob.brokerschedule;
 import cucumber.api.java.en.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import tudonoob.brokerschedule.controller.BrokerController;
-import tudonoob.brokerschedule.model.Broker;
-import tudonoob.brokerschedule.model.Day;
+import tudonoob.brokerschedule.model.BrokerModel;
+import tudonoob.brokerschedule.model.DayModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,42 +19,42 @@ public class BrokerRegistrationStep {
     private BrokerController controller;
 
 
-    private Broker broker;
+    private BrokerModel brokerModel;
 
-    private List<Day> constrains;
+    private List<DayModel> constrains;
 
     private RuntimeException exception;
 
     @Given("^a broker with this name \"([^\"]*)\"$")
     public void i_have_broker_with_name(String brokerName) throws Throwable {
-        this.broker = new Broker();
+        this.brokerModel = new BrokerModel();
         constrains = new ArrayList<>();
-        broker.setConstrains(constrains);
-        broker.setName(brokerName);
+        brokerModel.setConstrains(constrains);
+        brokerModel.setName(brokerName);
     }
 
     @And("^this broker does not want to work on \"([^\"]*)\" in the shift \"(morning|afternoon|not\\savailable)\"$")
     public void _he_does_not_want_to_work_on(String dayName, String shift) {
-        Day day = new Day();
-        day.setDayName(dayName);
+        DayModel dayModel = new DayModel();
+        dayModel.setDayName(dayName);
 
         if (shift.equals("afternoon")) {
-            day.setIsAvailableAfternoon(true);
+            dayModel.setIsAvailableAfternoon(true);
         } else if (shift.equals("morning")) {
-            day.setIsAvailableMorning(true);
+            dayModel.setIsAvailableMorning(true);
         }
 
-        boolean isNotAvailableInTheWholeDay = (day.getIsAvailableAfternoon() || day.getIsAvailableMorning()) ?
+        boolean isNotAvailableInTheWholeDay = (dayModel.getIsAvailableAfternoon() || dayModel.getIsAvailableMorning()) ?
                 false : true;
 
-        day.setIsAvailableInTheWholeDay(isNotAvailableInTheWholeDay);
-        constrains.add(day);
+        dayModel.setIsAvailableInTheWholeDay(isNotAvailableInTheWholeDay);
+        constrains.add(dayModel);
     }
 
     @When("^register the broker")
     public void register() {
         try {
-            controller.registerBroker(this.broker);
+            controller.registerBroker(this.brokerModel);
         } catch (RuntimeException exception) {
             this.exception = exception;
         }
@@ -63,7 +63,7 @@ public class BrokerRegistrationStep {
     @Then("^the broker should be registered with this name (\\w+)$")
     public void my_belly_should_growl(String expectedBrokerName) throws Throwable {
         assertNull(exception);
-        assertEquals(broker.getName(), expectedBrokerName);
+        assertEquals(brokerModel.getName(), expectedBrokerName);
     }
 
 
@@ -77,7 +77,7 @@ public class BrokerRegistrationStep {
         assertEquals(errorMessage, exception.getMessage());
     }
 
-    public Broker getBroker() {
-        return broker;
+    public BrokerModel getBrokerModel() {
+        return brokerModel;
     }
 }

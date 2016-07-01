@@ -5,7 +5,7 @@ import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.model.Broker;
+import tudonoob.brokerschedule.model.BrokerModel;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentMap;
@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.mockito.MockitoAnnotations.initMocks;
 
-public class BrokerServiceTest {
+public class BrokerModelServiceTest {
 
     @Mock
     private BrokerCache cache;
@@ -58,7 +58,7 @@ public class BrokerServiceTest {
         assertEquals(1, resultBrokers.size());
 
         boolean allMatch = resultBrokers.stream().allMatch(broker ->
-                ((Broker) broker).getConstrains()
+                ((BrokerModel) broker).getConstrains()
                         .stream()
                         .anyMatch(constraint -> constraint.getDayName().equals("friday"))
         );

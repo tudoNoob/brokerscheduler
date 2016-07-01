@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import tudonoob.brokerschedule.annotation.LogMethod;
-import tudonoob.brokerschedule.model.Broker;
-import tudonoob.brokerschedule.model.Day;
+import tudonoob.brokerschedule.model.BrokerModel;
+import tudonoob.brokerschedule.model.DayModel;
 import tudonoob.brokerschedule.model.WeekDay;
 
 import java.util.*;
@@ -15,7 +15,7 @@ import java.util.concurrent.ConcurrentMap;
 @Component
 public class BrokerCache {
 
-    private static final String BROKER_ERROR = "Broker already exist.";
+    private static final String BROKER_ERROR = "BrokerModel already exist.";
     private static final String CONSTRAIN_ERROR = "Constrain with error.";
     private static final String CACHE_IS_EMPTY_ERROR = "Cache is Empty";
     private static final String FIRST_ID_NUMBER = "1";
@@ -25,46 +25,46 @@ public class BrokerCache {
     private Map<String, Object> cacheWrapper;
 
     @LogMethod(level = "INFO", message = "Executing add To Cache.")
-    public Broker addToCache(Broker broker) {
+    public BrokerModel addToCache(BrokerModel brokerModel) {
         ConcurrentMap<String, Object> cache = getConcurrentMap();
 
-        validateBroker(broker, cache);
+        validateBroker(brokerModel, cache);
 
         String newIdForNewBroker = getIdForNewBrokerAndValidateIfCacheIsEmpty(cache);
 
-        addBrokerIntoCache(broker, cache, newIdForNewBroker);
+        addBrokerIntoCache(brokerModel, cache, newIdForNewBroker);
 
         return getBroker(newIdForNewBroker);
     }
 
-    private void addBrokerIntoCache(Broker broker, ConcurrentMap<String, Object> cache, String newIdForNewBroker) {
-        cache.put(newIdForNewBroker, broker);
+    private void addBrokerIntoCache(BrokerModel brokerModel, ConcurrentMap<String, Object> cache, String newIdForNewBroker) {
+        cache.put(newIdForNewBroker, brokerModel);
     }
 
-    private void validateBroker(Broker broker, ConcurrentMap<String, Object> cache) {
-        if (existsBroker(broker, cache)) {
+    private void validateBroker(BrokerModel brokerModel, ConcurrentMap<String, Object> cache) {
+        if (existsBroker(brokerModel, cache)) {
             throw new BrokerAddOperationException(BROKER_ERROR);
-        } else if (!validateConstrains(broker.getConstrains())) {
+        } else if (!validateConstrains(brokerModel.getConstrains())) {
             throw new BrokerAddOperationException(CONSTRAIN_ERROR);
         }
     }
 
-    public Broker updateBroker(String id, Broker broker) {
+    public BrokerModel updateBroker(String id, BrokerModel brokerModel) {
         ConcurrentMap<String, Object> cache = getConcurrentMap();
-        Broker oldBroker = getBroker(id);
+        BrokerModel oldBrokerModel = getBroker(id);
 
-        if (oldBroker == null) {
-            addBrokerIntoCache(broker, cache, id);
+        if (oldBrokerModel == null) {
+            addBrokerIntoCache(brokerModel, cache, id);
         } else {
             cache.remove(id);
-            addBrokerIntoCache(broker, cache, id);
+            addBrokerIntoCache(brokerModel, cache, id);
         }
 
-        return broker;
+        return brokerModel;
     }
 
-    private boolean existsBroker(Broker broker, ConcurrentMap<String, Object> cache) {
-        return cache.containsValue(broker);
+    private boolean existsBroker(BrokerModel brokerModel, ConcurrentMap<String, Object> cache) {
+        return cache.containsValue(brokerModel);
     }
 
     private String getIdForNewBrokerAndValidateIfCacheIsEmpty(ConcurrentMap<String, Object> cache) {
@@ -104,11 +104,11 @@ public class BrokerCache {
         return (ConcurrentMap<String, Object>) cacheWrapper.get("buildCache");
     }
 
-    private Broker getBroker(String id) {
-        return (Broker) getConcurrentMap().get(id);
+    private BrokerModel getBroker(String id) {
+        return (BrokerModel) getConcurrentMap().get(id);
     }
 
-    private boolean validateConstrains(List<Day> constrains) {
+    private boolean validateConstrains(List<DayModel> constrains) {
         boolean isValidated = true;
 
         try {

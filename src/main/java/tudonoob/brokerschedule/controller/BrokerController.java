@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.model.Broker;
+import tudonoob.brokerschedule.model.BrokerModel;
 import tudonoob.brokerschedule.service.BrokerService;
 
 import javax.validation.Valid;
@@ -24,16 +24,16 @@ public class BrokerController {
     @ResponseStatus(HttpStatus.CREATED)
     public
     @ResponseBody
-    Broker registerBroker(@RequestBody @Valid Broker broker) {
-        return cache.addToCache(broker);
+    BrokerModel registerBroker(@RequestBody @Valid BrokerModel brokerModel) {
+        return cache.addToCache(brokerModel);
     }
 
     @RequestMapping(value = "/update/{id}", method = RequestMethod.PUT)
     @ResponseStatus(HttpStatus.OK)
     public
     @ResponseBody
-    Broker updateBroker(@PathVariable("id") String id, @RequestBody Broker broker) {
-        return cache.updateBroker(id, broker);
+    BrokerModel updateBroker(@PathVariable("id") String id, @RequestBody BrokerModel brokerModel) {
+        return cache.updateBroker(id, brokerModel);
     }
 
     @RequestMapping(value = "/getAllBrokers", method = RequestMethod.GET)
@@ -48,9 +48,9 @@ public class BrokerController {
     @ResponseStatus(HttpStatus.CREATED)
     public
     @ResponseBody
-    List<Broker> addBulkOfBrokers(@RequestBody List<Broker> brokers) {
-        brokers.forEach((broker) -> cache.addToCache(broker));
-        return brokers;
+    List<BrokerModel> addBulkOfBrokers(@RequestBody List<BrokerModel> brokerModels) {
+        brokerModels.forEach((broker) -> cache.addToCache(broker));
+        return brokerModels;
     }
 
     @RequestMapping(value = "/filterByName/{name}", method = RequestMethod.POST)

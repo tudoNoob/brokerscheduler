@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import tudonoob.brokerschedule.annotation.LogMethod;
 import tudonoob.brokerschedule.cache.BrokerCache;
-import tudonoob.brokerschedule.model.Broker;
+import tudonoob.brokerschedule.model.BrokerModel;
 
 import java.util.Collection;
 import java.util.List;
@@ -35,14 +35,14 @@ public class BrokerService {
     }
 
     private Predicate<Object> getPredicateToFilterConstraintByName(String constraint) {
-        return (broker) -> ((Broker) broker).getConstrains()
+        return (broker) -> ((BrokerModel) broker).getConstrains()
                 .stream().anyMatch(day -> day.getDayName().equals(constraint));
     }
 
     @LogMethod(level = "INFO")
     public List<Object> filterBrokersByName(String name) {
 
-        Predicate<Object> matchBrokerByName = (broker) -> ((Broker) broker).getName().contains(name);
+        Predicate<Object> matchBrokerByName = (broker) -> ((BrokerModel) broker).getName().contains(name);
 
         List<Object> brokersFilterByName = cache.getAllBrokers()
                 .values().stream()
@@ -69,6 +69,6 @@ public class BrokerService {
     }
 
     private Predicate<Object> getPredicateForOnlyBrokersWithConstraintsSizeOne() {
-        return broker -> ((Broker) broker).getConstrains().size() == 1;
+        return broker -> ((BrokerModel) broker).getConstrains().size() == 1;
     }
 }

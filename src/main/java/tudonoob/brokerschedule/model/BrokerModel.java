@@ -8,14 +8,16 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class Broker {
+@AllArgsConstructor
+@Builder
+public class BrokerModel {
 
     @NotNull
     @NotEmpty
     private String name;
-    private List<Day> constrains;
+    private List<DayModel> constrains;
 
-    public Broker(String name) {
+    public BrokerModel(String name) {
         this.name = name;
     }
 

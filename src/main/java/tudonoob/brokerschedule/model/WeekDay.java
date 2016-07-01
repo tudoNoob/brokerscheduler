@@ -17,4 +17,8 @@ public enum WeekDay {
 
     private String weekDayName;
 
+    public static WeekDay isAValidWeekDay(String weekDayName) {
+        return WeekDay.valueOf(weekDayName.toUpperCase());
+    }
+
 }

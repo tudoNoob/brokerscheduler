@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Day {
+public class DayModel {
 
     private String dayName;
 

@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.when;
 
-public class BrokerSchedulerServiceTest {
+public class BrokerModelSchedulerServiceTest {
 
     private BrokerSchedulerService service;
 
